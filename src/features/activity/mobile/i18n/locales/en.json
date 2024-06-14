@@ -1,3 +1,136 @@
 {
-  "title": ""
+  "summary": {
+    "items": [
+      {
+        "label": "Status"
+      },
+      {
+        "label": "Activity Compliance"
+      },
+      {
+        "label": "Load Percentage"
+      },
+      {
+        "label": "Available Time (Hour)"
+      },
+      {
+        "label": "Timespent (Hour)"
+      },
+      {
+        "label": "Activity"
+      }
+    ]
+  },
+  "today_activity": {
+    "title": "Today’s Activities",
+    "description": "Sorted by timeline",
+    "cta": {
+      "add_activity": {
+        "children": "Add Activity"
+      }
+    },
+    "search": {
+      "label": "",
+      "placeholder": "Search activity..."
+    },
+    "empty": {
+      "message": "No activity today",
+      "description": "Create new activity now"
+    }
+  },
+  "month_activity": {
+    "title": "This Month Activities",
+    "description": "Sorted by last updated",
+    "cta": {
+      "add_activity": {
+        "children": "Add Activity"
+      }
+    },
+    "search": {
+      "label": "",
+      "placeholder": "Search activity..."
+    },
+    "empty": {
+      "message": "No activity this month",
+      "description": "Create new activity now"
+    }
+  },
+  "create_activity": {
+    "title": "Create Activity",
+    "description": "You can create event, meeting and tasks",
+    "form": {
+      "project": {
+        "label": "Project",
+        "placeholder": "Project"
+      },
+      "activity": {
+        "label": "Activity",
+        "placeholder": "Activity"
+      },
+      "priority": {
+        "label": "Priority",
+        "placeholder": "Priority"
+      },
+      "date": {
+        "label": "Date",
+        "placeholder": "Date"
+      },
+      "start": {
+        "label": "Start",
+        "placeholder": "Start"
+      },
+      "end": {
+        "label": "End",
+        "placeholder": "End"
+      },
+      "status": {
+        "label": "Status",
+        "placeholder": "Status"
+      }
+    },
+    "cta": {
+      "create_activity": {
+        "children": "Create Activity"
+      }
+    }
+  },
+  "update_activity": {
+    "title": "Update Activity",
+    "description": "You can update event, meeting and tasks",
+    "form": {
+      "project": {
+        "label": "Project",
+        "placeholder": "Project"
+      },
+      "activity": {
+        "label": "Activity",
+        "placeholder": "Activity"
+      },
+      "priority": {
+        "label": "Priority",
+        "placeholder": "Priority"
+      },
+      "date": {
+        "label": "Date",
+        "placeholder": "Date"
+      },
+      "start": {
+        "label": "Start",
+        "placeholder": "Start"
+      },
+      "end": {
+        "label": "End",
+        "placeholder": "End"
+      },
+      "status": {
+        "label": "Status",
+        "placeholder": "Status"
+      }
+    },
+    "cta": {
+      "create_activity": {
+        "children": "Update Activity"
+      }
+    }
+  }
 }
