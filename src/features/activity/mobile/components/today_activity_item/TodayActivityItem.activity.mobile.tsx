@@ -36,6 +36,7 @@ export interface TodayActivityItemActivityMobileProps {
     duration: string;
     icon: string;
   };
+  onClick?: () => void;
 }
 
 export const TodayActivityItemActivityMobile = ({
@@ -47,13 +48,15 @@ export const TodayActivityItemActivityMobile = ({
     duration: "",
     icon: "",
   },
+  onClick = () => {},
 }: TodayActivityItemActivityMobileProps) => {
   return (
-    <div
+    <button
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
         "w-full"
       )}
+      onClick={onClick}
     >
       {/* header */}
       <div
@@ -62,7 +65,7 @@ export const TodayActivityItemActivityMobile = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[#000000] text-[0.875rem] font-medium")}>
+        <p className={clsx("text-[#000000] text-[0.875rem] font-medium text-left")}>
           {name}
         </p>
         <div
@@ -114,6 +117,6 @@ export const TodayActivityItemActivityMobile = ({
           )}
         </div>
       </div>
-    </div>
+    </button>
   );
 };

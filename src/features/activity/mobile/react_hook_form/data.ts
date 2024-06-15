@@ -6,6 +6,7 @@ export const forms = {
     data: "data-today_activities-activity_mobile",
   },
   month_activities: {
+    search: "search-month_activities-activity_mobile",
     data: "data-month_activities-activity_mobile",
   },
   create: {

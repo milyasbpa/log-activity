@@ -33,9 +33,9 @@ export interface MonthActivityItemActivityMobileProps {
   project?: string;
   time?: {
     range: string;
-    duration: string;
     icon: string;
   };
+  onClick?: () => void;
 }
 
 export const MonthActivityItemActivityMobile = ({
@@ -44,16 +44,17 @@ export const MonthActivityItemActivityMobile = ({
   project = "",
   time = {
     range: "",
-    duration: "",
     icon: "",
   },
+  onClick = () => {},
 }: MonthActivityItemActivityMobileProps) => {
   return (
-    <div
+    <button
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.25rem]",
         "w-full"
       )}
+      onClick={onClick}
     >
       {/* header */}
       <div
@@ -62,7 +63,7 @@ export const MonthActivityItemActivityMobile = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[#000000] text-[0.875rem] font-medium")}>
+        <p className={clsx("text-[#000000] text-[0.875rem] font-medium text-left")}>
           {name}
         </p>
         <div
@@ -107,13 +108,8 @@ export const MonthActivityItemActivityMobile = ({
           <p className={clsx("text-[#5C5F62] text-[0.875rem] font-medium")}>
             {time.range}
           </p>
-          {time.range !== "-" && time.range.length > 0 && (
-            <p className={clsx("text-[#000000] text-[0.875rem] font-medium")}>
-              {time.duration}
-            </p>
-          )}
         </div>
       </div>
-    </div>
+    </button>
   );
 };

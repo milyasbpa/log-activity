@@ -73,13 +73,13 @@ export const SelectActivityMobile = ({
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <g clip-path="url(#clip0_203_17438)">
+              <g clipPath="url(#clip0_203_17438)">
                 <path
                   d="M6 9L12 15L18 9"
                   stroke="#667085"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </g>
               <defs>

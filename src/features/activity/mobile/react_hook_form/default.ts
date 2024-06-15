@@ -2,6 +2,7 @@ import { forms } from "./data";
 import { ActivityMobileForm } from "./type";
 
 export interface TodayActivities {
+  id: string;
   name: string;
   status: string;
   project: string;
@@ -10,11 +11,11 @@ export interface TodayActivities {
 }
 
 export interface MonthActivities {
+  id: string;
   name: string;
   status: string;
   project: string;
-  range: string;
-  duration: string;
+  time: string;
 }
 
 export const defaultValues: ActivityMobileForm = {
@@ -28,6 +29,7 @@ export const defaultValues: ActivityMobileForm = {
   [forms.today_activities.data]: [] as TodayActivities[],
 
   // month_activities
+  [forms.month_activities.search]: "" as string,
   [forms.month_activities.data]: [] as MonthActivities[],
 
   // create

@@ -1,13 +1,36 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { EmptyTodayActivityActivityMobile } from "../../components/empty_today_activity";
 import { TodayActivityItemActivityMobile } from "../../components/today_activity_item";
+import { useFormContext } from "react-hook-form";
+import { ActivityMobileForm } from "../../react_hook_form/type";
+import { forms } from "../../react_hook_form/data";
+import { TodayActivities } from "../../react_hook_form/default";
 
 export const TodayActivitiesActivityMobile = () => {
   const dictionaries = getDictionaries("en");
+  const { watch, setValue } = useFormContext<ActivityMobileForm>();
 
-  const isEmpty = false;
+  const todayActivitiesData = watch(
+    forms.today_activities.data
+  ) as TodayActivities[];
+  const isEmpty = !todayActivitiesData.length;
+
+  const handleAddActivity = () => {
+    setValue(forms.create.is_open, true);
+  };
+
+  // NOTE: Mocked Purpose
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      setValue(
+        forms.today_activities.data,
+        dictionaries.today_activity.items.mocked_data as TodayActivities[]
+      );
+    }
+  }, [typeof window]);
   return (
     <div
       className={clsx(
@@ -55,6 +78,7 @@ export const TodayActivitiesActivityMobile = () => {
               "px-[0.75rem] py-[0.5rem]",
               "text-[#FFFFFF] text-[0.875rem] font-medium"
             )}
+            onClick={handleAddActivity}
           >
             {dictionaries.today_activity.cta.add_activity.children}
           </button>
@@ -76,16 +100,18 @@ export const TodayActivitiesActivityMobile = () => {
               "w-full"
             )}
           >
-            <TodayActivityItemActivityMobile
-              name={"Meeting with andria about New UX concept"}
-              status={"Completed"}
-              project={"OSS"}
-              time={{
-                icon: dictionaries.today_activity.items.icon,
-                range: "08.00 - 09.00",
-                duration: "(1h)",
-              }}
-            />
+            {todayActivitiesData.map((item, index) => (
+              <TodayActivityItemActivityMobile
+                name={item.name}
+                status={item.status}
+                project={item.project}
+                time={{
+                  icon: dictionaries.today_activity.items.icon,
+                  range: item.range,
+                  duration: item.duration,
+                }}
+              />
+            ))}
           </div>
         )}
       </div>

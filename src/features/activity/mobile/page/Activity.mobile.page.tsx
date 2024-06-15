@@ -1,3 +1,4 @@
+'use client'
 import { defaultValues as defaultValuesActivityMobile } from "@/features/activity/mobile/react_hook_form/default";
 import * as React from "react";
 import { FormProvider, useForm } from "react-hook-form";

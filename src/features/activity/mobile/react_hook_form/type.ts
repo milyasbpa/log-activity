@@ -5,7 +5,10 @@ export const summary = [forms.summary.status] as const;
 
 export const today_activities = [forms.today_activities.data] as const;
 
-export const month_activities = [forms.month_activities.data] as const;
+export const month_activities = [
+  forms.month_activities.search,
+  forms.month_activities.data,
+] as const;
 
 export const create = [
   forms.create.is_open,

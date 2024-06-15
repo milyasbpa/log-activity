@@ -39,7 +39,33 @@
       "src": "/illustrations/activity/mobile/fragments/today_activities/empty.svg"
     },
     "items": {
-      "icon": "/icons/activity/mobile/fragments/today_activities/activity.svg"
+      "icon": "/icons/activity/mobile/fragments/today_activities/activity.svg",
+      "mocked_data": [
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Todo",
+          "project": "OSS",
+          "range": "08.00 - 09.00",
+          "duration": "(1h)"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "In Progress",
+          "project": "OSS",
+          "range": "08.00 - 09.00",
+          "duration": "(1h)"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Completed",
+          "project": "OSS",
+          "range": "08.00 - 09.00",
+          "duration": "(1h)"
+        }
+      ]
     }
   },
   "month_activity": {
@@ -60,8 +86,36 @@
       "description": "Create new activity now",
       "src": "/illustrations/activity/mobile/fragments/month_activities/empty.svg"
     },
+    "not_found": {
+      "message": "No activity found",
+      "description": "Try to find another activity",
+      "src": "/illustrations/activity/mobile/fragments/month_activities/empty.svg"
+    },
     "items": {
-      "icon": "/icons/activity/mobile/fragments/month_activities/activity.svg"
+      "icon": "/icons/activity/mobile/fragments/month_activities/activity.svg",
+      "mocked_data": [
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Todo",
+          "project": "OSS",
+          "time": "6 hours"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "In Progress",
+          "project": "OSS",
+          "time": "6 hours"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Completed",
+          "project": "OSS",
+          "time": "6 hours"
+        }
+      ]
     }
   },
   "create_activity": {
@@ -70,7 +124,17 @@
     "form": {
       "project": {
         "label": "Project",
-        "placeholder": "Select Your Project"
+        "placeholder": "Select Your Project",
+        "options": [
+          {
+            "id": "OSS",
+            "name": "OSS"
+          },
+          {
+            "id": "LKPP",
+            "name": "LKPP"
+          }
+        ]
       },
       "activity": {
         "label": "Activity",
@@ -78,7 +142,21 @@
       },
       "priority": {
         "label": "Priority",
-        "placeholder": "Select Your Priority"
+        "placeholder": "Select Your Priority",
+        "options": [
+          {
+            "id": "low",
+            "name": "Low"
+          },
+          {
+            "id": "medium",
+            "name": "Medium"
+          },
+          {
+            "id": "high",
+            "name": "High"
+          }
+        ]
       },
       "date": {
         "label": "Date",
@@ -133,7 +211,21 @@
       },
       "status": {
         "label": "Status",
-        "placeholder": "Status"
+        "placeholder": "Status",
+        "options": [
+          {
+            "id": "todo",
+            "name": "Todo"
+          },
+          {
+            "id": "in_progress",
+            "name": "In Progress"
+          },
+          {
+            "id": "done",
+            "name": "Done"
+          }
+        ]
       }
     },
     "cta": {

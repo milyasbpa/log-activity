@@ -13,12 +13,55 @@ export const CreateActivityMobile = () => {
   const dictionaries = getDictionaries("en");
   const isOpen = watch(forms.create.is_open) as boolean;
 
-  const handleCloseFailedExportModal = () => {
+  const projectValue = watch(forms.create.form.project.value) as null | {
+    id: string;
+    name: string;
+  };
+  const projectOptions = watch(forms.create.form.project.options) as {
+    id: string;
+    name: string;
+  }[];
+
+  const priorityValue = watch(forms.create.form.priority.value) as null | {
+    id: string;
+    name: string;
+  };
+  const priorityOptions = watch(forms.create.form.priority.options) as {
+    id: string;
+    name: string;
+  }[];
+
+  const statusValue = watch(forms.create.form.status.value) as null | {
+    id: string;
+    name: string;
+  };
+  const statusOptions = watch(forms.create.form.status.options) as {
+    id: string;
+    name: string;
+  }[];
+
+  const handleClose = () => {
     setValue(forms.create.is_open, false);
   };
 
+  const handleSelectProject = (data: { id: string; name: string }) => {
+    setValue(forms.create.form.project.value, data);
+  };
+
+  const handleChangeActivity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(forms.create.form.project.value, e.currentTarget.value);
+  };
+
+  const handleSelectPriority = (data: { id: string; name: string }) => {
+    setValue(forms.create.form.priority.value, data);
+  };
+
+  const handleSelectStatus = (data: { id: string; name: string }) => {
+    setValue(forms.create.form.status.value, data);
+  };
+
   return (
-    <Dialog isOpen={isOpen} onClose={handleCloseFailedExportModal}>
+    <Dialog isOpen={isOpen} onClose={handleClose}>
       <div
         className={clsx(
           "grid grid-flow-row grid-rows-[auto_1fr_auto]",
@@ -62,6 +105,7 @@ export const CreateActivityMobile = () => {
                 "bg-[#EFEFF0]",
                 "rounded-[50%]"
               )}
+              onClick={handleClose}
             >
               <img src={"/icons/activity/mobile/fragments/create/close.svg"} />
             </button>
@@ -76,23 +120,28 @@ export const CreateActivityMobile = () => {
           >
             <SelectActivityMobile
               label={dictionaries.create_activity.form.project.label}
-              value={null}
+              value={projectValue}
               placeholder={
                 dictionaries.create_activity.form.project.placeholder
               }
+              options={projectOptions}
+              onSelect={handleSelectProject}
             />
             <InputActivityMobile
               label={dictionaries.create_activity.form.activity.label}
               placeholder={
                 dictionaries.create_activity.form.activity.placeholder
               }
+              onChange={handleChangeActivity}
             />
             <SelectActivityMobile
               label={dictionaries.create_activity.form.priority.label}
-              value={null}
+              value={priorityValue}
               placeholder={
                 dictionaries.create_activity.form.priority.placeholder
               }
+              options={priorityOptions}
+              onSelect={handleSelectPriority}
             />
             <div
               className={clsx(
@@ -118,8 +167,10 @@ export const CreateActivityMobile = () => {
             </div>
             <SelectActivityMobile
               label={dictionaries.create_activity.form.status.label}
-              value={null}
+              value={statusValue}
               placeholder={dictionaries.create_activity.form.status.placeholder}
+              options={statusOptions}
+              onSelect={handleSelectStatus}
             />
           </div>
 

@@ -1,13 +1,40 @@
+"use client";
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { EmptyMonthActivityActivityMobile } from "../../components/empty_month_activity";
 import { MonthActivityItemActivityMobile } from "../../components/month_activity_item";
 import { MonthActivitySearchInputActivityMobile } from "../../components/month_activity_search_input";
+import { useFormContext } from "react-hook-form";
+import { ActivityMobileForm } from "../../react_hook_form/type";
+import { forms } from "../../react_hook_form/data";
+import { MonthActivities } from "../../react_hook_form/default";
 
 export const MonthActivitiesActivityMobile = () => {
   const dictionaries = getDictionaries("en");
-  const isEmpty = false;
+  const { watch, setValue } = useFormContext<ActivityMobileForm>();
+
+  const monthActivitiesData = watch(
+    forms.month_activities.data
+  ) as MonthActivities[];
+  console.log(monthActivitiesData, "ini apa");
+  const isEmpty = !monthActivitiesData.length;
+  const isNotFound =
+    !monthActivitiesData.length &&
+    (watch(forms.month_activities.search) as string).length > 0;
+
+  const handleAddActivity = () => {
+    setValue(forms.create.is_open, true);
+  };
+
+  // NOTE: Mocked Purpose
+  React.useEffect(() => {
+    setValue(
+      forms.month_activities.data,
+      dictionaries.month_activity.items.mocked_data as MonthActivities[]
+    );
+  }, []);
+
   return (
     <div
       className={clsx(
@@ -55,6 +82,7 @@ export const MonthActivitiesActivityMobile = () => {
               "px-[0.75rem] py-[0.5rem]",
               "text-[#FFFFFF] text-[0.875rem] font-medium"
             )}
+            onClick={handleAddActivity}
           >
             {dictionaries.month_activity.cta.add_activity.children}
           </button>
@@ -69,9 +97,21 @@ export const MonthActivitiesActivityMobile = () => {
         {/* body */}
         {isEmpty && (
           <EmptyMonthActivityActivityMobile
-            src={dictionaries.month_activity.empty.src}
-            message={dictionaries.month_activity.empty.message}
-            description={dictionaries.month_activity.empty.description}
+            src={
+              isNotFound
+                ? dictionaries.month_activity.not_found.src
+                : dictionaries.month_activity.empty.src
+            }
+            message={
+              isNotFound
+                ? dictionaries.month_activity.not_found.message
+                : dictionaries.month_activity.empty.message
+            }
+            description={
+              isNotFound
+                ? dictionaries.month_activity.not_found.description
+                : dictionaries.month_activity.empty.description
+            }
           />
         )}
 
@@ -82,16 +122,18 @@ export const MonthActivitiesActivityMobile = () => {
               "w-full"
             )}
           >
-            <MonthActivityItemActivityMobile
-              name={"Meeting with andria about New UX concept"}
-              status={"Completed"}
-              project={"OSS"}
-              time={{
-                icon: dictionaries.month_activity.items.icon,
-                range: "08.00 - 09.00",
-                duration: "(1h)",
-              }}
-            />
+            {monthActivitiesData.map((item, index) => (
+              <MonthActivityItemActivityMobile
+                key={index}
+                name={item.name}
+                status={item.status}
+                project={item.project}
+                time={{
+                  icon: dictionaries.month_activity.items.icon,
+                  range: item.time,
+                }}
+              />
+            ))}
           </div>
         )}
       </div>
