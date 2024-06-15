@@ -28,8 +28,6 @@ export const SelectActivityMobile = ({
     setIsOpen((prev) => !prev);
   };
 
-  console.log(value?.name, "ini name");
-
   return (
     <div
       className={clsx(

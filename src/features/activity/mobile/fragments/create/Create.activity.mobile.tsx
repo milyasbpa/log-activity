@@ -4,12 +4,18 @@ import { Dialog } from "@/core/components/dialog";
 import { getDictionaries } from "../../i18n";
 import { InputActivityMobile } from "../../components/input";
 import { SelectActivityMobile } from "../../components/select";
+import { useFormContext } from "react-hook-form";
+import { ActivityMobileForm } from "../../react_hook_form/type";
+import { forms } from "../../react_hook_form/data";
 
 export const CreateActivityMobile = () => {
+  const { watch, setValue } = useFormContext<ActivityMobileForm>();
   const dictionaries = getDictionaries("en");
-  const isOpen = true;
+  const isOpen = watch(forms.create.is_open) as boolean;
 
-  const handleCloseFailedExportModal = () => {};
+  const handleCloseFailedExportModal = () => {
+    setValue(forms.create.is_open, false);
+  };
 
   return (
     <Dialog isOpen={isOpen} onClose={handleCloseFailedExportModal}>
