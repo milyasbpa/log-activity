@@ -70,15 +70,15 @@
     "form": {
       "project": {
         "label": "Project",
-        "placeholder": "Project"
+        "placeholder": "Select Your Project"
       },
       "activity": {
         "label": "Activity",
-        "placeholder": "Activity"
+        "placeholder": "Type Your Activity"
       },
       "priority": {
         "label": "Priority",
-        "placeholder": "Priority"
+        "placeholder": "Select Your Priority"
       },
       "date": {
         "label": "Date",
@@ -94,7 +94,7 @@
       },
       "status": {
         "label": "Status",
-        "placeholder": "Status"
+        "placeholder": "Select Your Status"
       }
     },
     "cta": {
