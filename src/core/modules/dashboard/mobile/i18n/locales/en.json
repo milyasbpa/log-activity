@@ -1,0 +1,86 @@
+{
+    "navigation": {
+        "menu": {
+            "profile": "Profile",
+            "logout": "Logout"
+        }
+    },
+    "sidebar": {
+        "menu": {
+            "admin": [
+                {
+                    "title": "Talent Report",
+                    "url": "/talent-report",
+                    "childrens": [
+                        {
+                            "url": "/talent-report/overview",
+                            "text": "Overview"
+                        }
+                    ]
+                },
+                {
+                    "title": "Workload Report",
+                    "url": "/workload-report",
+                    "childrens": [
+                        {
+                            "url": "/workload-report/overview",
+                            "text": "Overview"
+                        },
+                        {
+                            "url": "/workload-report/talent-search",
+                            "text": "Talent Search"
+                        }
+                    ]
+                },
+                {
+                    "title": "User Management",
+                    "url": "/user-management",
+                    "childrens": [
+                        {
+                            "url": "/user-management/user-list",
+                            "text": "User List"
+                        }
+                    ]
+                },
+                {
+                    "title": "Data Download",
+                    "url": "/data-download",
+                    "childrens": []
+                }
+            ],
+            "l3": [
+                {
+                    "title": "Home",
+                    "url": "/home",
+                    "childrens": []
+                }
+            ],
+            "non_l3": [
+                {
+                    "title": "Talent Report",
+                    "url": "/talent-report",
+                    "childrens": [
+                        {
+                            "url": "/talent-report/overview",
+                            "text": "Overview"
+                        }
+                    ]
+                },
+                {
+                    "title": "Workload Report",
+                    "url": "/workload-report",
+                    "childrens": [
+                        {
+                            "url": "/workload-report/overview",
+                            "text": "Overview"
+                        },
+                        {
+                            "url": "/workload-report/talent-search",
+                            "text": "Talent Search"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

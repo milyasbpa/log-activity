@@ -35,7 +35,11 @@
     },
     "empty": {
       "message": "No activity today",
-      "description": "Create new activity now"
+      "description": "Create new activity now",
+      "src": "/illustrations/activity/mobile/fragments/today_activities/empty.svg"
+    },
+    "items": {
+      "icon": "/icons/activity/mobile/fragments/today_activities/activity.svg"
     }
   },
   "month_activity": {
@@ -52,7 +56,11 @@
     },
     "empty": {
       "message": "No activity this month",
-      "description": "Create new activity now"
+      "description": "Create new activity now",
+      "src": "/illustrations/activity/mobile/fragments/today_activities/empty.svg"
+    },
+    "items": {
+      "icon": "/icons/activity/mobile/fragments/today_activities/activity.svg"
     }
   },
   "create_activity": {
