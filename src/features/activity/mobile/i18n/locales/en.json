@@ -51,16 +51,17 @@
       }
     },
     "search": {
+      "startIcon": "/icons/activity/mobile/fragments/month_activities/search.svg",
       "label": "",
       "placeholder": "Search activity..."
     },
     "empty": {
       "message": "No activity this month",
       "description": "Create new activity now",
-      "src": "/illustrations/activity/mobile/fragments/today_activities/empty.svg"
+      "src": "/illustrations/activity/mobile/fragments/month_activities/empty.svg"
     },
     "items": {
-      "icon": "/icons/activity/mobile/fragments/today_activities/activity.svg"
+      "icon": "/icons/activity/mobile/fragments/month_activities/activity.svg"
     }
   },
   "create_activity": {

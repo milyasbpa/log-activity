@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { EmptyMonthActivityActivityMobile } from "../../components/empty_month_activity";
 import { MonthActivityItemActivityMobile } from "../../components/month_activity_item";
+import { MonthActivitySearchInputActivityMobile } from "../../components/month_activity_search_input";
 
 export const MonthActivitiesActivityMobile = () => {
   const dictionaries = getDictionaries("en");
@@ -58,6 +59,12 @@ export const MonthActivitiesActivityMobile = () => {
             {dictionaries.month_activity.cta.add_activity.children}
           </button>
         </div>
+
+        {/* search */}
+        <MonthActivitySearchInputActivityMobile
+          startIcon={<img src={dictionaries.month_activity.search.startIcon} />}
+          placeholder={dictionaries.month_activity.search.placeholder}
+        />
 
         {/* body */}
         {isEmpty && (
