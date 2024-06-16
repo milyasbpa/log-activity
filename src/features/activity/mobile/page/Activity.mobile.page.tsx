@@ -1,8 +1,9 @@
-'use client'
+"use client";
 import { defaultValues as defaultValuesActivityMobile } from "@/features/activity/mobile/react_hook_form/default";
 import * as React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ActivityMobileContainer } from "../container";
+import { DashboardMobilePage } from "@/core/modules/dashboard/mobile/page/Dashboard.mobile.page";
 
 export interface ActivityMobilePageProps {}
 
@@ -13,8 +14,10 @@ export const ActivityMobilePage = (props: ActivityMobilePageProps) => {
     },
   });
   return (
-    <FormProvider {...methods}>
-      <ActivityMobileContainer />
-    </FormProvider>
+    <DashboardMobilePage>
+      <FormProvider {...methods}>
+        <ActivityMobileContainer />
+      </FormProvider>
+    </DashboardMobilePage>
   );
 };
