@@ -8,11 +8,11 @@ export const user = [
   forms.user.role,
 ] as const;
 
-export type NavigationMobileFormDataKeys =
+export type NavigationDesktopFormDataKeys =
   | (typeof navbar)[number]
   | (typeof user)[number];
 
-export type NavigationMobileForm = Record<
-  NavigationMobileFormDataKeys,
+export type NavigationDesktopForm = Record<
+  NavigationDesktopFormDataKeys,
   boolean | string | undefined
 >;

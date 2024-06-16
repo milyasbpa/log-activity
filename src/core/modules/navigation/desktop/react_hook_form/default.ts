@@ -1,7 +1,7 @@
 import { forms } from "./data";
-import { NavigationMobileForm } from "./type";
+import { NavigationDesktopForm } from "./type";
 
-export const defaultValues: NavigationMobileForm = {
+export const defaultValues: NavigationDesktopForm = {
   // navbar
   [forms.navbar.dropdown.is_open]: false,
 

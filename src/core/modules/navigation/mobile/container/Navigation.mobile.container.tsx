@@ -3,7 +3,7 @@ import * as React from "react";
 import clsx from "clsx";
 import { HeaderMobileNavigation } from "../fragments/header";
 import { useFormContext } from "react-hook-form";
-import { DashboardMobileForm } from "../react_hook_form/type";
+import { NavigationMobileForm } from "../react_hook_form/type";
 
 export interface NavigationMobileContainerProps {
   children?: React.ReactNode;
@@ -12,7 +12,7 @@ export interface NavigationMobileContainerProps {
 export const NavigationMobileContainer = ({
   children,
 }: NavigationMobileContainerProps) => {
-  const { watch } = useFormContext<DashboardMobileForm>();
+  const { watch } = useFormContext<NavigationMobileForm>();
 
   return (
     <>
