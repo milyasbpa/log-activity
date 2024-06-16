@@ -7,6 +7,7 @@ import { SelectActivityMobile } from "../../components/select";
 import { useFormContext } from "react-hook-form";
 import { ActivityMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
+import { DatePickerActivityMobile } from "../../components/datepicker";
 
 export const CreateActivityMobile = () => {
   const {
@@ -17,7 +18,8 @@ export const CreateActivityMobile = () => {
     formState: { errors },
   } = useFormContext<ActivityMobileForm>();
   const dictionaries = getDictionaries("en");
-  const isOpen = watch(forms.create.is_open) as boolean;
+  //   const isOpen = watch(forms.create.is_open) as boolean;
+  const isOpen = true;
 
   const projectValue = watch(forms.create.form.project.value) as null | {
     id: string;
@@ -215,6 +217,15 @@ export const CreateActivityMobile = () => {
                 dictionaries.create_activity.form.priority.placeholder
               }
               options={priorityOptions}
+              onSelect={handleSelectPriority}
+            />
+            <DatePickerActivityMobile
+              label={dictionaries.create_activity.form.date.label}
+              //   value={priorityValue}
+              placeholder={
+                dictionaries.create_activity.form.date.placeholder
+              }
+              //   options={priorityOptions}
               onSelect={handleSelectPriority}
             />
             <div
