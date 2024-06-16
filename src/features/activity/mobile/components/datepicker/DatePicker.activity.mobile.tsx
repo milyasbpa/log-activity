@@ -2,49 +2,58 @@
 import * as React from "react";
 import clsx from "clsx";
 import { useOnClickOutside } from "usehooks-ts";
-import { ChevronLeft, ChevronRight } from "emotion-icons/bootstrap";
-import { DayPickerActivityMobile } from "../daypicker/DayPicker.activity.mobile";
+import { MonthPickerActivityMobile } from "../monthpicker";
+import { YearPickerActivityMobile } from "../yearpicker";
+import { DayPickerActivityMobile } from "../daypicker";
 
-const addOneMonth = (date: Date): Date => {
-  // Clone the original date to avoid mutating it
-  const newDate = new Date(date.getTime());
-
-  // Get the current year and month
-  const currentYear = newDate.getFullYear();
-  const currentMonth = newDate.getMonth();
-
-  // Set the new month, handling year overflow if necessary
-  newDate.setMonth(currentMonth + 1);
-
-  // If the day in the new month is not as expected (e.g., adding one month to January 31 results in March 3),
-  // set the date to the last day of the previous month
-  if (newDate.getMonth() !== (currentMonth + 1) % 12) {
-    newDate.setDate(0);
-  }
-
+const subtractYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year - number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
   return newDate;
 };
 
-const subtractOneMonth = (date: Date): Date => {
-  // Clone the original date to avoid mutating it
-  const newDate = new Date(date.getTime());
+const addYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year + number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
+  return newDate;
+};
 
-  // Get the current month and year
-  const currentMonth = newDate.getMonth();
-  const currentYear = newDate.getFullYear();
+const addMonthNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
 
-  // Set the new month, handling year overflow if necessary
-  newDate.setMonth(currentMonth - 1);
-
-  // If the resulting month is not as expected (e.g., subtracting one month from March 31 results in March 3),
-  // set the date to the last day of the previous month
-  if (
-    newDate.getMonth() === currentMonth - 1 + 12 ||
-    newDate.getMonth() === currentMonth + 1 - 12
-  ) {
-    newDate.setDate(0);
+  const month = new Date(date).getMonth() + 1;
+  let newMonth = month + number;
+  let newYear = year;
+  if (newMonth > 12) {
+    newMonth = newMonth - 12;
+    newYear = year + 1;
   }
 
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
+  return newDate;
+};
+
+const subtractMonthNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+
+  const month = new Date(date).getMonth() + 1;
+  let newMonth = month - number;
+  let newYear = year;
+  if (newMonth < 1) {
+    newMonth = 12 - Math.abs(1 - newMonth) + 1;
+    newYear = year - 1;
+  }
+
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
+  console.log(month, newYear, newMonth, newDate, "ini new date");
   return newDate;
 };
 
@@ -76,14 +85,29 @@ export const DatePickerActivityMobile = ({
   };
 
   const handleClickNextMonth = () => {
-    setDate(addOneMonth(date));
+    setDate(addMonthNumber(date, 1));
   };
 
   const handleClickPreviousMonth = () => {
-    setDate(subtractOneMonth(date));
+    setDate(subtractMonthNumber(date, 1));
   };
 
-  console.log(date, "ini date");
+  const handleClickNextYear = () => {
+    setDate(addYearNumber(date, 1));
+  };
+
+  const handleClickPreviousYear = () => {
+    setDate(subtractYearNumber(date, 1));
+  };
+
+  const handleClickNextPeriod = () => {
+    setDate(addYearNumber(date, 12));
+  };
+
+  const handleClickPreviousPeriod = () => {
+    setDate(subtractYearNumber(date, 12));
+  };
+
   return (
     <div
       className={clsx(
@@ -137,9 +161,19 @@ export const DatePickerActivityMobile = ({
         >
           <DayPickerActivityMobile
             date={date}
-            onClickNextMonth={handleClickNextMonth}
-            onClickPreviousMonth={handleClickPreviousMonth}
+            onClickNext={handleClickNextMonth}
+            onClickPrevious={handleClickPreviousMonth}
           />
+          {/* <MonthPickerActivityMobile
+            date={date}
+            onClickNext={handleClickNextYear}
+            onClickPrevious={handleClickPreviousYear}
+          /> */}
+          {/* <YearPickerActivityMobile
+            date={date}
+            onClickNext={handleClickNextPeriod}
+            onClickPrevious={handleClickPreviousPeriod}
+          /> */}
         </div>
         {/* end body */}
       </div>

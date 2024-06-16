@@ -17,7 +17,7 @@ export const MonthActivitiesActivityMobile = () => {
   const monthActivitiesData = watch(
     forms.month_activities.data
   ) as MonthActivities[];
-  console.log(monthActivitiesData, "ini apa");
+
   const isEmpty = !monthActivitiesData.length;
   const isNotFound =
     !monthActivitiesData.length &&

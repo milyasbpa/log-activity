@@ -7,8 +7,6 @@ import { useFormContext } from "react-hook-form";
 import { NavigationMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
 import { getInitials } from "@/core/utils/formatters";
-import { AuthCollectionWebURL } from "@/core/router/web";
-import { Dropdown } from "@/core/components/dropdown";
 import { Avatar } from "@/core/components/avatar";
 
 export const HeaderMobileNavigation = () => {
@@ -79,9 +77,9 @@ export const HeaderMobileNavigation = () => {
                 <path
                   d="M6 9L12 15L18 9"
                   stroke="#212121"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>

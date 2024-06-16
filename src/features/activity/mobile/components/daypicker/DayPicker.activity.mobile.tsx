@@ -64,16 +64,16 @@ function generateCalendarDates(year: number, month: number): CalendarDate[] {
 export interface DayPickerActivityMobileProps {
   date?: Date;
   onClickMonth?: () => void;
-  onClickPreviousMonth?: () => void;
-  onClickNextMonth?: () => void;
+  onClickPrevious?: () => void;
+  onClickNext?: () => void;
   onClickDate?: (date: Date) => void;
 }
 
 export const DayPickerActivityMobile = ({
   date = new Date(),
   onClickMonth = () => {},
-  onClickPreviousMonth = () => {},
-  onClickNextMonth = () => {},
+  onClickPrevious = () => {},
+  onClickNext = () => {},
   onClickDate = (date: Date) => {},
 }: DayPickerActivityMobileProps) => {
   const monthName = date.toLocaleString("en-US", {
@@ -100,7 +100,7 @@ export const DayPickerActivityMobile = ({
           "w-full"
         )}
       >
-        <button onClick={onClickPreviousMonth}>
+        <button onClick={onClickPrevious}>
           <ChevronLeft
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />
@@ -117,7 +117,7 @@ export const DayPickerActivityMobile = ({
           {monthName}
         </button>
 
-        <button onClick={onClickNextMonth}>
+        <button onClick={onClickNext}>
           <ChevronRight
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />

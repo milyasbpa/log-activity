@@ -28,7 +28,6 @@ export const HeaderDesktopNavigation = () => {
     );
   };
 
-  console.log(name, "ini name");
   return (
     <div className={clsx("fixed top-0", "z-50", "w-screen")}>
       <div
@@ -80,9 +79,9 @@ export const HeaderDesktopNavigation = () => {
                 <path
                   d="M6 9L12 15L18 9"
                   stroke="#212121"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
