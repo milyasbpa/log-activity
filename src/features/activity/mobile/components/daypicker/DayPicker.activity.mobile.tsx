@@ -140,12 +140,12 @@ export const DayPickerActivityMobile = ({
               "w-full",
               "text-[14px] font-semibold",
               "rounded-[0.25rem]",
-              calendarItem.isCurrentMonth &&
-                datesAreEqual(calendarItem.date, date)
+
+              datesAreEqual(calendarItem.date, date)
                 ? "bg-[#EEE9FD]"
                 : "bg-transparent",
-              calendarItem.isCurrentMonth &&
-                datesAreEqual(calendarItem.date, date)
+
+              datesAreEqual(calendarItem.date, date)
                 ? "text-[#6F47EB]"
                 : calendarItem.isCurrentMonth &&
                   !datesAreEqual(calendarItem.date, date)
