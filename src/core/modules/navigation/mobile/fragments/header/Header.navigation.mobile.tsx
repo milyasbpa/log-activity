@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { DownOutlined } from "@ant-design/icons";
 
 import { useRouter } from "next/navigation";
-import { getDashboardDictionaries } from "../../i18n";
+import { getDictionaries } from "../../i18n";
 import { useFormContext } from "react-hook-form";
 import { DashboardMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
@@ -12,11 +12,11 @@ import { AuthCollectionWebURL } from "@/core/router/web";
 import { Dropdown } from "@/core/components/dropdown";
 import { Avatar } from "@/core/components/avatar";
 
-export const NavigationMobileDashboard = () => {
+export const HeaderMobileNavigation = () => {
   const router = useRouter();
   const { watch, setValue } = useFormContext<DashboardMobileForm>();
 
-  const dict = getDashboardDictionaries("en");
+  const dict = getDictionaries("en");
 
   const initial = getInitials((watch(forms.user.name) as string) || "");
   const name = watch(forms.user.name) as string;

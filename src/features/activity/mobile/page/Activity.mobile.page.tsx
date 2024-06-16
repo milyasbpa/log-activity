@@ -3,7 +3,7 @@ import { defaultValues as defaultValuesActivityMobile } from "@/features/activit
 import * as React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ActivityMobileContainer } from "../container";
-import { DashboardMobilePage } from "@/core/modules/dashboard/mobile/page/Dashboard.mobile.page";
+import { NavigationMobilePage } from "@/core/modules/navigation/mobile/page/Navigation.mobile.page";
 
 export interface ActivityMobilePageProps {}
 
@@ -14,10 +14,10 @@ export const ActivityMobilePage = (props: ActivityMobilePageProps) => {
     },
   });
   return (
-    <DashboardMobilePage>
+    <NavigationMobilePage>
       <FormProvider {...methods}>
         <ActivityMobileContainer />
       </FormProvider>
-    </DashboardMobilePage>
+    </NavigationMobilePage>
   );
 };
