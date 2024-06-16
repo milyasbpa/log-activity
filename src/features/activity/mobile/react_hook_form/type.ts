@@ -25,11 +25,28 @@ export const create = [
   forms.create.form.status.options,
 ] as const;
 
+export const update = [
+  forms.update.selected_id,
+  forms.update.is_open,
+  forms.update.form.project.value,
+  forms.update.form.project.options,
+  forms.update.form.activity.value,
+  forms.update.form.priority.value,
+  forms.update.form.priority.options,
+  forms.update.form.start.value,
+  forms.update.form.start.options,
+  forms.update.form.end.value,
+  forms.update.form.end.options,
+  forms.update.form.status.value,
+  forms.update.form.status.options,
+] as const;
+
 export type ActivityMobileFormDataKeys =
   | (typeof summary)[number]
   | (typeof today_activities)[number]
   | (typeof month_activities)[number]
-  | (typeof create)[number];
+  | (typeof create)[number]
+  | (typeof update)[number];
 
 export type ActivityMobileForm = Record<
   ActivityMobileFormDataKeys,

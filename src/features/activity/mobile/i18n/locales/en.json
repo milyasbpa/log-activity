@@ -138,7 +138,13 @@
       },
       "activity": {
         "label": "Activity",
-        "placeholder": "Type Your Activity"
+        "placeholder": "Type Your Activity",
+        "errors": {
+          "required": {
+            "code": "required",
+            "message": "Activity is required"
+          }
+        }
       },
       "priority": {
         "label": "Priority",

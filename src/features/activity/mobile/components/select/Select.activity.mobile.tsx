@@ -8,6 +8,7 @@ export interface SelectActivityMobileProps {
   placeholder?: string;
   value?: null | { id: string; name: string };
   options?: { id: string; name: string }[];
+  isShowIndicator?: boolean;
   onSelect?: (data: { id: string; name: string }) => void;
 }
 
@@ -16,6 +17,7 @@ export const SelectActivityMobile = ({
   placeholder = "",
   value = null,
   options = [],
+  isShowIndicator = true,
   onSelect = (data: { id: string; name: string }) => {},
 }: SelectActivityMobileProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -65,30 +67,32 @@ export const SelectActivityMobile = ({
         >
           {value === null ? placeholder : value.name}
 
-          <div className={clsx(isOpen ? "rotate-180" : "rotate-0")}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g clipPath="url(#clip0_203_17438)">
-                <path
-                  d="M6 9L12 15L18 9"
-                  stroke="#667085"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </g>
-              <defs>
-                <clipPath id="clip0_203_17438">
-                  <rect width="24" height="24" fill="white" />
-                </clipPath>
-              </defs>
-            </svg>
-          </div>
+          {isShowIndicator && (
+            <div className={clsx(isOpen ? "rotate-180" : "rotate-0")}>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clipPath="url(#clip0_203_17438)">
+                  <path
+                    d="M6 9L12 15L18 9"
+                    stroke="#667085"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_203_17438">
+                    <rect width="24" height="24" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+          )}
         </button>
 
         {/* body */}

@@ -9,7 +9,13 @@ import { ActivityMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
 
 export const CreateActivityMobile = () => {
-  const { watch, setValue } = useFormContext<ActivityMobileForm>();
+  const {
+    watch,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext<ActivityMobileForm>();
   const dictionaries = getDictionaries("en");
   const isOpen = watch(forms.create.is_open) as boolean;
 
@@ -31,6 +37,28 @@ export const CreateActivityMobile = () => {
     name: string;
   }[];
 
+  const startValue = watch(forms.create.form.start.value) as null | {
+    id: string;
+    name: string;
+  };
+  const startOptions = Array.from({ length: 24 }, (_, i) => {
+    return {
+      id: i < 10 ? `0${i}:00` : `${i}:00`,
+      name: i < 10 ? `0${i}:00` : `${i}:00`,
+    };
+  });
+
+  const endValue = watch(forms.create.form.end.value) as null | {
+    id: string;
+    name: string;
+  };
+  const endOptions = Array.from({ length: 24 }, (_, i) => {
+    return {
+      id: i < 10 ? `0${i}:00` : `${i}:00`,
+      name: i < 10 ? `0${i}:00` : `${i}:00`,
+    };
+  });
+
   const statusValue = watch(forms.create.form.status.value) as null | {
     id: string;
     name: string;
@@ -50,15 +78,55 @@ export const CreateActivityMobile = () => {
 
   const handleChangeActivity = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(forms.create.form.project.value, e.currentTarget.value);
+    if (!e.currentTarget.value.length) {
+      setError(forms.create.form.activity.value, {
+        type: "required",
+        message:
+          dictionaries.create_activity.form.activity.errors.required.message,
+      });
+    } else {
+      clearErrors(forms.create.form.activity.value);
+    }
   };
 
   const handleSelectPriority = (data: { id: string; name: string }) => {
     setValue(forms.create.form.priority.value, data);
   };
 
+  const handleSelectStart = (data: { id: string; name: string }) => {
+    setValue(forms.create.form.start.value, data);
+  };
+
+  const handleSelectEnd = (data: { id: string; name: string }) => {
+    setValue(forms.create.form.end.value, data);
+  };
+
   const handleSelectStatus = (data: { id: string; name: string }) => {
     setValue(forms.create.form.status.value, data);
   };
+
+  const isSubmitDisabled =
+    (watch(forms.create.form.project.value) as {
+      id: string;
+      name: string;
+    } | null) === null ||
+    !(watch(forms.create.form.activity.value) as string).length ||
+    (watch(forms.create.form.priority.value) as {
+      id: string;
+      name: string;
+    } | null) === null ||
+    (watch(forms.create.form.start.value) as {
+      id: string;
+      name: string;
+    } | null) === null ||
+    (watch(forms.create.form.end.value) as {
+      id: string;
+      name: string;
+    } | null) === null ||
+    (watch(forms.create.form.status.value) as {
+      id: string;
+      name: string;
+    } | null) === null;
 
   return (
     <Dialog isOpen={isOpen} onClose={handleClose}>
@@ -132,6 +200,12 @@ export const CreateActivityMobile = () => {
               placeholder={
                 dictionaries.create_activity.form.activity.placeholder
               }
+              isError={
+                errors[forms.create.form.activity.value]?.message !== undefined
+              }
+              helperText={
+                errors[forms.create.form.activity.value]?.message ?? ""
+              }
               onChange={handleChangeActivity}
             />
             <SelectActivityMobile
@@ -151,18 +225,24 @@ export const CreateActivityMobile = () => {
             >
               <SelectActivityMobile
                 label={dictionaries.create_activity.form.start.label}
-                value={null}
+                value={startValue}
+                options={startOptions}
                 placeholder={
                   dictionaries.create_activity.form.start.placeholder
                 }
+                isShowIndicator={false}
+                onSelect={handleSelectStart}
               />
               <p className={clsx("text-[#000000] text-[1rem] font-medium")}>
                 {"-"}
               </p>
               <SelectActivityMobile
                 label={dictionaries.create_activity.form.end.label}
-                value={null}
+                value={endValue}
+                options={endOptions}
                 placeholder={dictionaries.create_activity.form.end.placeholder}
+                isShowIndicator={false}
+                onSelect={handleSelectEnd}
               />
             </div>
             <SelectActivityMobile
@@ -181,9 +261,12 @@ export const CreateActivityMobile = () => {
               "w-full",
               "rounded-[0.625rem]",
               "bg-[#5C5F62]",
+              "disabled:bg-[#5C5F62]",
               "px-[0.75rem] py-[0.75rem]",
-              "text-[#FFFFFF] text-[15px] font-medium"
+              "text-[#FFFFFF] text-[15px] font-medium",
+              "disabled:text-[#FFFFFF]"
             )}
+            disabled={isSubmitDisabled}
           >
             {dictionaries.create_activity.cta.create_activity.children}
           </button>

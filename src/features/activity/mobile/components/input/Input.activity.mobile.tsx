@@ -3,9 +3,14 @@ import * as React from "react";
 import clsx from "clsx";
 
 export interface InputActivityMobileProps
-  extends React.HTMLProps<HTMLInputElement> {}
+  extends React.HTMLProps<HTMLInputElement> {
+  helperText?: string;
+  isError?: boolean;
+}
 
 export const InputActivityMobile = ({
+  helperText = "",
+  isError = false,
   ...otherProps
 }: InputActivityMobileProps) => {
   return (
@@ -39,6 +44,16 @@ export const InputActivityMobile = ({
           {...otherProps}
         />
       </div>
+      {helperText.length > 0 && (
+        <p
+          className={clsx(
+            "text-[15px] font-normal",
+            isError ? "text-[red]" : "text-[#212121]"
+          )}
+        >
+          {helperText}
+        </p>
+      )}
     </div>
   );
 };
