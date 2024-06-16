@@ -82,7 +82,7 @@ export const UpdateActivityMobile = () => {
       setError(forms.update.form.activity.value, {
         type: "required",
         message:
-          dictionaries.create_activity.form.activity.errors.required.message,
+          dictionaries.update_activity.form.activity.errors.required.message,
       });
     } else {
       clearErrors(forms.update.form.activity.value);
@@ -159,10 +159,10 @@ export const UpdateActivityMobile = () => {
               )}
             >
               <p className={clsx("text-[#000000] text-[1rem] font-medium")}>
-                {dictionaries.create_activity.title}
+                {dictionaries.update_activity.title}
               </p>
               <p className={clsx("text-[#5C5F62] text-[0.875rem] font-normal")}>
-                {dictionaries.create_activity.description}
+                {dictionaries.update_activity.description}
               </p>
             </div>
 
@@ -187,18 +187,18 @@ export const UpdateActivityMobile = () => {
             )}
           >
             <SelectActivityMobile
-              label={dictionaries.create_activity.form.project.label}
+              label={dictionaries.update_activity.form.project.label}
               value={projectValue}
               placeholder={
-                dictionaries.create_activity.form.project.placeholder
+                dictionaries.update_activity.form.project.placeholder
               }
               options={projectOptions}
               onSelect={handleSelectProject}
             />
             <InputActivityMobile
-              label={dictionaries.create_activity.form.activity.label}
+              label={dictionaries.update_activity.form.activity.label}
               placeholder={
-                dictionaries.create_activity.form.activity.placeholder
+                dictionaries.update_activity.form.activity.placeholder
               }
               isError={
                 errors[forms.update.form.activity.value]?.message !== undefined
@@ -209,10 +209,10 @@ export const UpdateActivityMobile = () => {
               onChange={handleChangeActivity}
             />
             <SelectActivityMobile
-              label={dictionaries.create_activity.form.priority.label}
+              label={dictionaries.update_activity.form.priority.label}
               value={priorityValue}
               placeholder={
-                dictionaries.create_activity.form.priority.placeholder
+                dictionaries.update_activity.form.priority.placeholder
               }
               options={priorityOptions}
               onSelect={handleSelectPriority}
@@ -224,11 +224,11 @@ export const UpdateActivityMobile = () => {
               )}
             >
               <SelectActivityMobile
-                label={dictionaries.create_activity.form.start.label}
+                label={dictionaries.update_activity.form.start.label}
                 value={startValue}
                 options={startOptions}
                 placeholder={
-                  dictionaries.create_activity.form.start.placeholder
+                  dictionaries.update_activity.form.start.placeholder
                 }
                 isShowIndicator={false}
                 onSelect={handleSelectStart}
@@ -237,18 +237,18 @@ export const UpdateActivityMobile = () => {
                 {"-"}
               </p>
               <SelectActivityMobile
-                label={dictionaries.create_activity.form.end.label}
+                label={dictionaries.update_activity.form.end.label}
                 value={endValue}
                 options={endOptions}
-                placeholder={dictionaries.create_activity.form.end.placeholder}
+                placeholder={dictionaries.update_activity.form.end.placeholder}
                 isShowIndicator={false}
                 onSelect={handleSelectEnd}
               />
             </div>
             <SelectActivityMobile
-              label={dictionaries.create_activity.form.status.label}
+              label={dictionaries.update_activity.form.status.label}
               value={statusValue}
-              placeholder={dictionaries.create_activity.form.status.placeholder}
+              placeholder={dictionaries.update_activity.form.status.placeholder}
               options={statusOptions}
               onSelect={handleSelectStatus}
             />
@@ -268,7 +268,7 @@ export const UpdateActivityMobile = () => {
             )}
             disabled={isSubmitDisabled}
           >
-            {dictionaries.create_activity.cta.create_activity.children}
+            {dictionaries.update_activity.cta.update_activity.children}
           </button>
         </div>
       </div>

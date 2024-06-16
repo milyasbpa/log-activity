@@ -21,6 +21,11 @@ export const TodayActivitiesActivityMobile = () => {
   const handleAddActivity = () => {
     setValue(forms.create.is_open, true);
   };
+  const handleClickTodayActivity = (data: TodayActivities) => {
+    setValue(forms.update.is_open, true);
+    setValue(forms.update.selected_id, data.id);
+  };
+  // test
 
   // NOTE: Mocked Purpose
   React.useEffect(() => {
@@ -102,6 +107,7 @@ export const TodayActivitiesActivityMobile = () => {
           >
             {todayActivitiesData.map((item, index) => (
               <TodayActivityItemActivityMobile
+                key={index}
                 name={item.name}
                 status={item.status}
                 project={item.project}
@@ -110,6 +116,7 @@ export const TodayActivitiesActivityMobile = () => {
                   range: item.range,
                   duration: item.duration,
                 }}
+                onClick={() => handleClickTodayActivity(item)}
               />
             ))}
           </div>

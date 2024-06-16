@@ -197,7 +197,13 @@
       },
       "activity": {
         "label": "Activity",
-        "placeholder": "Activity"
+        "placeholder": "Activity",
+        "errors": {
+          "required": {
+            "code": "required",
+            "message": "Activity is required"
+          }
+        }
       },
       "priority": {
         "label": "Priority",
@@ -235,7 +241,7 @@
       }
     },
     "cta": {
-      "create_activity": {
+      "update_activity": {
         "children": "Update Activity"
       }
     }

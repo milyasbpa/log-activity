@@ -27,6 +27,11 @@ export const MonthActivitiesActivityMobile = () => {
     setValue(forms.create.is_open, true);
   };
 
+  const handleClickMonthActivity = (data: MonthActivities) => {
+    setValue(forms.update.is_open, true);
+    setValue(forms.update.selected_id, data.id);
+  };
+
   // NOTE: Mocked Purpose
   React.useEffect(() => {
     setValue(
@@ -132,6 +137,7 @@ export const MonthActivitiesActivityMobile = () => {
                   icon: dictionaries.month_activity.items.icon,
                   range: item.time,
                 }}
+                onClick={() => handleClickMonthActivity(item)}
               />
             ))}
           </div>
