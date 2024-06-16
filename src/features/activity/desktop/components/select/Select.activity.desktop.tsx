@@ -100,16 +100,27 @@ export const SelectActivityDesktop = ({
           <div
             className={clsx(
               "absolute top-[60px]",
-              "grid grid-cols-1 items-center content-center justify-start justify-items-start gap-[0.75rem]",
+              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
               "w-full",
               "border border-[#D0D5DD]",
               "rounded-[0.25rem]",
               "px-[1rem] py-[0.625rem]",
-              "bg-[#F9FAFB]"
+              "bg-[#F9FAFB]",
+              "h-[120px]",
+              "overflow-auto"
             )}
           >
             {options.map((option, optionIndex) => (
-              <button key={optionIndex}>{option.name}</button>
+              <button
+                key={optionIndex}
+                className={clsx("text-[13px] text-[#000] font-normal")}
+                onClick={() => {
+                  onSelect(option);
+                  setIsOpen(false);
+                }}
+              >
+                {option.name}
+              </button>
             ))}
           </div>
         )}
