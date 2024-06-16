@@ -1,3 +1,158 @@
 {
-  "title": ""
+  "summary": {
+    "items": [
+      {
+        "id": "status",
+        "label": "Status"
+      },
+      {
+        "id": "activity_compliance",
+        "label": "Activity Compliance"
+      },
+      {
+        "id": "load_percentage",
+        "label": "Load Percentage"
+      },
+      {
+        "id": "available_time",
+        "label": "Available Time (Hour)"
+      },
+      {
+        "id": "timespent",
+        "label": "Timespent (Hour)"
+      },
+      {
+        "id": "activity",
+        "label": "Activity"
+      }
+    ]
+  },
+  "create_activity": {
+    "title": "Create Activity",
+    "description": "You can create event, meeting and tasks",
+    "form": {
+      "project": {
+        "label": "Project",
+        "placeholder": "Select Your Project",
+        "options": [
+          {
+            "id": "OSS",
+            "name": "OSS"
+          },
+          {
+            "id": "LKPP",
+            "name": "LKPP"
+          }
+        ]
+      },
+      "activity": {
+        "label": "Activity",
+        "placeholder": "Type Your Activity",
+        "errors": {
+          "required": {
+            "code": "required",
+            "message": "Activity is required"
+          }
+        }
+      },
+      "priority": {
+        "label": "Priority",
+        "placeholder": "Select Your Priority",
+        "options": [
+          {
+            "id": "low",
+            "name": "Low"
+          },
+          {
+            "id": "medium",
+            "name": "Medium"
+          },
+          {
+            "id": "high",
+            "name": "High"
+          }
+        ]
+      },
+      "date": {
+        "label": "Date",
+        "placeholder": "Date"
+      },
+      "start": {
+        "label": "Start",
+        "placeholder": "Start"
+      },
+      "end": {
+        "label": "End",
+        "placeholder": "End"
+      },
+      "status": {
+        "label": "Status",
+        "placeholder": "Select Your Status"
+      }
+    },
+    "cta": {
+      "create_activity": {
+        "children": "Create Activity"
+      }
+    }
+  },
+  "update_activity": {
+    "title": "Update Activity",
+    "description": "You can update event, meeting and tasks",
+    "form": {
+      "project": {
+        "label": "Project",
+        "placeholder": "Project"
+      },
+      "activity": {
+        "label": "Activity",
+        "placeholder": "Activity",
+        "errors": {
+          "required": {
+            "code": "required",
+            "message": "Activity is required"
+          }
+        }
+      },
+      "priority": {
+        "label": "Priority",
+        "placeholder": "Priority"
+      },
+      "date": {
+        "label": "Date",
+        "placeholder": "Date"
+      },
+      "start": {
+        "label": "Start",
+        "placeholder": "Start"
+      },
+      "end": {
+        "label": "End",
+        "placeholder": "End"
+      },
+      "status": {
+        "label": "Status",
+        "placeholder": "Status",
+        "options": [
+          {
+            "id": "todo",
+            "name": "Todo"
+          },
+          {
+            "id": "in_progress",
+            "name": "In Progress"
+          },
+          {
+            "id": "done",
+            "name": "Done"
+          }
+        ]
+      }
+    },
+    "cta": {
+      "update_activity": {
+        "children": "Update Activity"
+      }
+    }
+  }
 }

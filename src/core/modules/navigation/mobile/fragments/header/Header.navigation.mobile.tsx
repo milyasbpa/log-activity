@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import { DownOutlined } from "@ant-design/icons";
 
 import { useRouter } from "next/navigation";
 import { getDictionaries } from "../../i18n";
 import { useFormContext } from "react-hook-form";
-import { DashboardMobileForm } from "../../react_hook_form/type";
+import { NavigationMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
 import { getInitials } from "@/core/utils/formatters";
 import { AuthCollectionWebURL } from "@/core/router/web";
@@ -14,7 +13,7 @@ import { Avatar } from "@/core/components/avatar";
 
 export const HeaderMobileNavigation = () => {
   const router = useRouter();
-  const { watch, setValue } = useFormContext<DashboardMobileForm>();
+  const { watch, setValue } = useFormContext<NavigationMobileForm>();
 
   const dict = getDictionaries("en");
 

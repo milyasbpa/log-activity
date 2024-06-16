@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import clsx from "clsx";
-import { HeaderMobileNavigation } from "../fragments/header";
+import { HeaderDesktopNavigation } from "../fragments/header";
 import { useFormContext } from "react-hook-form";
 import { NavigationDesktopForm } from "../react_hook_form/type";
 
@@ -17,7 +17,7 @@ export const NavigationDesktopContainer = ({
   return (
     <>
       <nav>
-        <HeaderMobileNavigation />
+        <HeaderDesktopNavigation />
       </nav>
 
       <main className={clsx("min-h-screen", "pt-[4rem]", "bg-white")}>

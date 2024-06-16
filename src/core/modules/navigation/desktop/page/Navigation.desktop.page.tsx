@@ -2,15 +2,15 @@
 import { defaultValues as defaultValuesDashboardMobile } from "@/core/modules/navigation/mobile/react_hook_form/default";
 import * as React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { NavigationMobileContainer } from "../container";
+import { NavigationDesktopContainer } from "../container";
 
-export interface NavigationMobilePageProps {
+export interface NavigationDesktopPageProps {
   children?: React.ReactNode;
 }
 
-export const NavigationMobilePage = ({
+export const NavigationDesktopPage = ({
   children,
-}: NavigationMobilePageProps) => {
+}: NavigationDesktopPageProps) => {
   const methods = useForm({
     defaultValues: {
       ...defaultValuesDashboardMobile,
@@ -18,7 +18,7 @@ export const NavigationMobilePage = ({
   });
   return (
     <FormProvider {...methods}>
-      <NavigationMobileContainer>{children}</NavigationMobileContainer>
+      <NavigationDesktopContainer>{children}</NavigationDesktopContainer>
     </FormProvider>
   );
 };

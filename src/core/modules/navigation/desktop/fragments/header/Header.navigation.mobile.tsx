@@ -5,16 +5,16 @@ import { DownOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { getDictionaries } from "../../i18n";
 import { useFormContext } from "react-hook-form";
-import { DashboardMobileForm } from "../../react_hook_form/type";
+import { NavigationDesktopForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
 import { getInitials } from "@/core/utils/formatters";
 import { AuthCollectionWebURL } from "@/core/router/web";
 import { Dropdown } from "@/core/components/dropdown";
 import { Avatar } from "@/core/components/avatar";
 
-export const HeaderMobileNavigation = () => {
+export const HeaderDesktopNavigation = () => {
   const router = useRouter();
-  const { watch, setValue } = useFormContext<DashboardMobileForm>();
+  const { watch, setValue } = useFormContext<NavigationDesktopForm>();
 
   const dict = getDictionaries("en");
 
