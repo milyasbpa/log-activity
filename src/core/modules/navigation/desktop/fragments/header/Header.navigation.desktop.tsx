@@ -8,8 +8,6 @@ import { useFormContext } from "react-hook-form";
 import { NavigationDesktopForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
 import { getInitials } from "@/core/utils/formatters";
-import { AuthCollectionWebURL } from "@/core/router/web";
-import { Dropdown } from "@/core/components/dropdown";
 import { Avatar } from "@/core/components/avatar";
 
 export const HeaderDesktopNavigation = () => {
@@ -29,6 +27,8 @@ export const HeaderDesktopNavigation = () => {
       !(watch(forms.navbar.dropdown.is_open) as boolean)
     );
   };
+
+  console.log(name, "ini name");
   return (
     <div className={clsx("fixed top-0", "z-50", "w-screen")}>
       <div

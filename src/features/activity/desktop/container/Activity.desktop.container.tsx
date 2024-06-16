@@ -10,7 +10,9 @@ export const ActivityDesktopContainer = (
   props: ActivityDesktopContainerProps
 ) => {
   return (
-    <div className={clsx("w-full", "bg-white", "min-h-[100vh]")}>
+    <div
+      className={clsx("hidden sm:block", "w-full", "bg-white", "min-h-[100vh]")}
+    >
       <SummaryActivityDesktop />
       <CreateActivityDesktop />
       <UpdateActivityDesktop />

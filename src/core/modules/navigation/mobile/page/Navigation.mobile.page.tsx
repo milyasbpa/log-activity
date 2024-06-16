@@ -1,5 +1,5 @@
 "use client";
-import { defaultValues as defaultValuesDashboardMobile } from "@/core/modules/navigation/mobile/react_hook_form/default";
+import { defaultValues as defaultValuesNavigationMobile } from "@/core/modules/navigation/mobile/react_hook_form/default";
 import * as React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { NavigationMobileContainer } from "../container";
@@ -13,7 +13,7 @@ export const NavigationMobilePage = ({
 }: NavigationMobilePageProps) => {
   const methods = useForm({
     defaultValues: {
-      ...defaultValuesDashboardMobile,
+      ...defaultValuesNavigationMobile,
     },
   });
   return (

@@ -8,9 +8,12 @@ export const user = [
   forms.user.role,
 ] as const;
 
+export const sidebar = [forms.sidebar.is_collapse] as const;
+
 export type NavigationDesktopFormDataKeys =
   | (typeof navbar)[number]
-  | (typeof user)[number];
+  | (typeof user)[number]
+  | (typeof sidebar)[number];
 
 export type NavigationDesktopForm = Record<
   NavigationDesktopFormDataKeys,

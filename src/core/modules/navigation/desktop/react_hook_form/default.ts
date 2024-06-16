@@ -9,4 +9,7 @@ export const defaultValues: NavigationDesktopForm = {
   [forms.user.name]: "Alwan Thio",
   [forms.user.role]: "Designer",
   [forms.user.initial]: "A",
+
+  //  sidebar
+  [forms.sidebar.is_collapse]: false as boolean,
 };
