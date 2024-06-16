@@ -6,107 +6,87 @@ import { MonthPickerActivityMobile } from "../monthpicker";
 import { YearPickerActivityMobile } from "../yearpicker";
 import { DayPickerActivityMobile } from "../daypicker";
 
-const subtractYearNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-  const newYear = year - number;
-  const month = new Date(date).getMonth() + 1;
-  const day = new Date().getDate();
-  const newDate = new Date(`${newYear}-${month}-${day}`);
-  return newDate;
-};
-
-const addYearNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-  const newYear = year + number;
-  const month = new Date(date).getMonth() + 1;
-  const day = new Date().getDate();
-  const newDate = new Date(`${newYear}-${month}-${day}`);
-  return newDate;
-};
-
-const addMonthNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth() + 1;
-  let newMonth = month + number;
-  let newYear = year;
-  if (newMonth > 12) {
-    newMonth = newMonth - 12;
-    newYear = year + 1;
-  }
-
-  const day = new Date().getDate();
-  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
-  return newDate;
-};
-
-const subtractMonthNumber = (date: Date, number: number): Date => {
-  const year = new Date(date).getFullYear();
-
-  const month = new Date(date).getMonth() + 1;
-  let newMonth = month - number;
-  let newYear = year;
-  if (newMonth < 1) {
-    newMonth = 12 - Math.abs(1 - newMonth) + 1;
-    newYear = year - 1;
-  }
-
-  const day = new Date().getDate();
-  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
-  console.log(month, newYear, newMonth, newDate, "ini new date");
-  return newDate;
-};
-
 export interface DatePickerActivityMobileProps {
   label?: string;
-  placeholder?: string;
-  value?: null | { id: string; name: string };
-  options?: { id: string; name: string }[];
-  onSelect?: (data: { id: string; name: string }) => void;
+  value?: Date;
+  disabled?: boolean;
+  onSelect?: (data: Date) => void;
 }
 
 export const DatePickerActivityMobile = ({
   label = "",
-  placeholder = "",
-  value = null,
-  options = [],
-  onSelect = (data: { id: string; name: string }) => {},
+  value = new Date(),
+  disabled = false,
+  onSelect = (data: Date) => {},
 }: DatePickerActivityMobileProps) => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const ref = React.useRef<HTMLDivElement | null>(null);
+
+  const [date, setDate] = React.useState<Date>(value);
+
+  const [isDayShow, setIsDayShow] = React.useState<boolean>(false);
+  const [isMonthShow, setIsMonthShow] = React.useState<boolean>(false);
+  const [isYearShow, setIsYearShow] = React.useState<boolean>(false);
+
   useOnClickOutside(ref, () => {
     setIsOpen((_) => false);
+    setIsDayShow(false);
+    setIsMonthShow(false);
+    setIsYearShow(false);
   });
-
-  const [date, setDate] = React.useState<Date>(new Date());
 
   const handleClickDropdown = () => {
     setIsOpen((prev) => !prev);
+    if (isOpen === true) {
+      setIsDayShow(false);
+      setIsMonthShow(false);
+      setIsYearShow(false);
+    } else {
+      setIsDayShow(true);
+    }
   };
 
-  const handleClickNextMonth = () => {
-    setDate(addMonthNumber(date, 1));
+  const handleClickMonth = () => {
+    setIsDayShow(false);
+    setIsMonthShow(true);
   };
 
-  const handleClickPreviousMonth = () => {
-    setDate(subtractMonthNumber(date, 1));
+  const handleSelectDate = (data: Date) => {
+    setDate(data);
+    setIsDayShow(false);
+    setIsMonthShow(true);
   };
 
-  const handleClickNextYear = () => {
-    setDate(addYearNumber(date, 1));
+  const handleClickYear = () => {
+    setIsMonthShow(false);
+    setIsYearShow(true);
   };
 
-  const handleClickPreviousYear = () => {
-    setDate(subtractYearNumber(date, 1));
+  const handleSelectMonth = (data: Date) => {
+    console.log(data, "ini data");
+    const newDate = new Date(
+      `${date.getFullYear()}-${data.getMonth() + 1}-${date.getDate()}`
+    );
+    setDate(newDate);
+    setIsMonthShow(false);
+    setIsYearShow(true);
   };
 
-  const handleClickNextPeriod = () => {
-    setDate(addYearNumber(date, 12));
+  const handleSelectYear = (data: Date) => {
+    const newDate = new Date(
+      `${data.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+    );
+    setDate(newDate);
+    setIsYearShow(false);
+    setIsOpen(false);
+    onSelect(newDate);
   };
 
-  const handleClickPreviousPeriod = () => {
-    setDate(subtractYearNumber(date, 12));
-  };
+  const formattedValue = new Date(value).toLocaleString("en-US", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  });
 
   return (
     <div
@@ -137,44 +117,52 @@ export const DatePickerActivityMobile = ({
             "rounded-[0.25rem]",
             "px-[1rem] py-[0.625rem]",
             "bg-[#F9FAFB]",
-            value !== null && value.name !== undefined
-              ? "text-[13px] text-[#000] font-normal"
-              : "text-[12px] text-[#1D2939] font-normal"
+            "text-[12px] text-[#1D2939] font-normal"
           )}
+          disabled={disabled}
           onClick={handleClickDropdown}
         >
-          {value === null ? placeholder : value.name}
+          {formattedValue}
         </button>
 
         {/* body */}
+        {isOpen && (
+          <div
+            className={clsx(
+              "absolute top-[60px]",
+              "z-10",
+              "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
+              "w-full",
+              "border border-[#D0D5DD]",
+              "rounded-[0.25rem]",
+              "bg-[#F9FAFB]"
+            )}
+          >
+            {isDayShow && (
+              <DayPickerActivityMobile
+                date={date}
+                onClickMonth={handleClickMonth}
+                onClickDate={handleSelectDate}
+              />
+            )}
 
-        <div
-          className={clsx(
-            "absolute top-[60px]",
-            "z-10",
-            "grid grid-cols-1 items-start content-start justify-start justify-items-start gap-[0.75rem]",
-            "w-full",
-            "border border-[#D0D5DD]",
-            "rounded-[0.25rem]",
-            "bg-[#F9FAFB]"
-          )}
-        >
-          <DayPickerActivityMobile
-            date={date}
-            onClickNext={handleClickNextMonth}
-            onClickPrevious={handleClickPreviousMonth}
-          />
-          {/* <MonthPickerActivityMobile
-            date={date}
-            onClickNext={handleClickNextYear}
-            onClickPrevious={handleClickPreviousYear}
-          /> */}
-          {/* <YearPickerActivityMobile
-            date={date}
-            onClickNext={handleClickNextPeriod}
-            onClickPrevious={handleClickPreviousPeriod}
-          /> */}
-        </div>
+            {isMonthShow && (
+              <MonthPickerActivityMobile
+                date={date}
+                onClickYear={handleClickYear}
+                onClickMonth={handleSelectMonth}
+              />
+            )}
+
+            {isYearShow && (
+              <YearPickerActivityMobile
+                date={date}
+                onClickYear={handleSelectYear}
+              />
+            )}
+          </div>
+        )}
+
         {/* end body */}
       </div>
     </div>

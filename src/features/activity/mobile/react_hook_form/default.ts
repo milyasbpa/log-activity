@@ -76,6 +76,7 @@ export const defaultValues: ActivityMobileForm = {
     id: string;
     name: string;
   }[],
+  [forms.create.form.date.value]: new Date() as Date,
   [forms.create.form.start.value]: null as {
     id: string;
     name: string;
@@ -117,6 +118,7 @@ export const defaultValues: ActivityMobileForm = {
     id: string;
     name: string;
   } | null,
+  [forms.update.form.date.value]: new Date() as Date,
   [forms.update.form.priority.options]: [] as {
     id: string;
     name: string;

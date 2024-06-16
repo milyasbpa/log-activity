@@ -7,6 +7,7 @@ import { SelectActivityMobile } from "../../components/select";
 import { useFormContext } from "react-hook-form";
 import { ActivityMobileForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
+import { DatePickerActivityMobile } from "../../components/datepicker";
 
 export const UpdateActivityMobile = () => {
   const {
@@ -36,6 +37,8 @@ export const UpdateActivityMobile = () => {
     id: string;
     name: string;
   }[];
+
+  const dateValue = watch(forms.create.form.date.value) as Date;
 
   const startValue = watch(forms.update.form.start.value) as null | {
     id: string;
@@ -91,6 +94,10 @@ export const UpdateActivityMobile = () => {
 
   const handleSelectPriority = (data: { id: string; name: string }) => {
     setValue(forms.update.form.priority.value, data);
+  };
+
+  const handleSelectDate = (data: Date) => {
+    setValue(forms.create.form.date.value, data);
   };
 
   const handleSelectStart = (data: { id: string; name: string }) => {
@@ -216,6 +223,11 @@ export const UpdateActivityMobile = () => {
               }
               options={priorityOptions}
               onSelect={handleSelectPriority}
+            />
+            <DatePickerActivityMobile
+              label={dictionaries.update_activity.form.date.label}
+              value={dateValue}
+              onSelect={handleSelectDate}
             />
             <div
               className={clsx(

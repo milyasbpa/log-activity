@@ -18,8 +18,8 @@ export const CreateActivityMobile = () => {
     formState: { errors },
   } = useFormContext<ActivityMobileForm>();
   const dictionaries = getDictionaries("en");
-  //   const isOpen = watch(forms.create.is_open) as boolean;
-  const isOpen = true;
+  const isOpen = watch(forms.create.is_open) as boolean;
+  // const isOpen = true;
 
   const projectValue = watch(forms.create.form.project.value) as null | {
     id: string;
@@ -38,6 +38,8 @@ export const CreateActivityMobile = () => {
     id: string;
     name: string;
   }[];
+
+  const dateValue = watch(forms.create.form.date.value) as Date;
 
   const startValue = watch(forms.create.form.start.value) as null | {
     id: string;
@@ -93,6 +95,10 @@ export const CreateActivityMobile = () => {
 
   const handleSelectPriority = (data: { id: string; name: string }) => {
     setValue(forms.create.form.priority.value, data);
+  };
+
+  const handleSelectDate = (data: Date) => {
+    setValue(forms.create.form.date.value, data);
   };
 
   const handleSelectStart = (data: { id: string; name: string }) => {
@@ -221,12 +227,8 @@ export const CreateActivityMobile = () => {
             />
             <DatePickerActivityMobile
               label={dictionaries.create_activity.form.date.label}
-              //   value={priorityValue}
-              placeholder={
-                dictionaries.create_activity.form.date.placeholder
-              }
-              //   options={priorityOptions}
-              onSelect={handleSelectPriority}
+              value={dateValue}
+              onSelect={handleSelectDate}
             />
             <div
               className={clsx(

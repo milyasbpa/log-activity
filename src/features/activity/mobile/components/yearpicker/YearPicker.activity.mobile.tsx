@@ -3,15 +3,33 @@ import * as React from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "emotion-icons/bootstrap";
 
-function yearsAreEqual(date1: Date, date2: Date): boolean {
+const subtractYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year - number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
+  return newDate;
+};
+
+const addYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year + number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
+  return newDate;
+};
+
+const yearsAreEqual = (date1: Date, date2: Date): boolean => {
   return date1.getFullYear() === date2.getFullYear();
-}
+};
 
 type YearInfo = {
   year: Date; // 0 for January, 1 for February, ..., 11 for December
 };
 
-function generateYearList(year: number): YearInfo[] {
+const generateYearList = (year: number): YearInfo[] => {
   const years: YearInfo[] = [];
 
   // Loop through each month (0 for January, 1 for February, ..., 11 for December)
@@ -24,27 +42,35 @@ function generateYearList(year: number): YearInfo[] {
   }
 
   return years;
-}
+};
 
 export interface YearPickerActivityMobileProps {
   date?: Date;
-
-  onClickPrevious?: () => void;
-  onClickNext?: () => void;
-  onClickYear?: (date: Date) => void;
+ onClickYear?: (date: Date) => void;
 }
 
 export const YearPickerActivityMobile = ({
   date = new Date(),
-  onClickPrevious = () => {},
-  onClickNext = () => {},
   onClickYear = (date: Date) => {},
 }: YearPickerActivityMobileProps) => {
+  const [newDate, setNewDate] = React.useState<Date>(date);
   const calendarYears = generateYearList(date.getFullYear());
 
   const yearName = `${calendarYears[0].year.getFullYear()}-${calendarYears[
     calendarYears.length - 1
   ].year.getFullYear()}`;
+
+  React.useEffect(() => {
+    setNewDate(date);
+  }, [date]);
+
+  const handleClickNext = () => {
+    setNewDate(addYearNumber(newDate, 12));
+  };
+
+  const handleClickPrevious = () => {
+    setNewDate(subtractYearNumber(newDate, 12));
+  };
 
   return (
     <div
@@ -61,7 +87,7 @@ export const YearPickerActivityMobile = ({
           "w-full"
         )}
       >
-        <button onClick={onClickPrevious}>
+        <button onClick={handleClickPrevious}>
           <ChevronLeft
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />
@@ -77,7 +103,7 @@ export const YearPickerActivityMobile = ({
           {yearName}
         </button>
 
-        <button onClick={onClickNext}>
+        <button onClick={handleClickNext}>
           <ChevronRight
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />

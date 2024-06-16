@@ -3,20 +3,52 @@ import * as React from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "emotion-icons/bootstrap";
 
+const addMonthNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+
+  const month = new Date(date).getMonth() + 1;
+  let newMonth = month + number;
+  let newYear = year;
+  if (newMonth > 12) {
+    newMonth = newMonth - 12;
+    newYear = year + 1;
+  }
+
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
+  return newDate;
+};
+
+const subtractMonthNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+
+  const month = new Date(date).getMonth() + 1;
+  let newMonth = month - number;
+  let newYear = year;
+  if (newMonth < 1) {
+    newMonth = 12 - Math.abs(1 - newMonth) + 1;
+    newYear = year - 1;
+  }
+
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${newMonth}-${day}`);
+  return newDate;
+};
+
 type CalendarDate = {
   date: Date;
   isCurrentMonth: boolean;
 };
 
-function datesAreEqual(date1: Date, date2: Date): boolean {
+const datesAreEqual = (date1: Date, date2: Date): boolean => {
   return (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate()
   );
-}
+};
 
-function generateCalendarDates(year: number, month: number): CalendarDate[] {
+const generateCalendarDates = (year: number, month: number): CalendarDate[] => {
   const dates: CalendarDate[] = [];
 
   // Create a date object for the first day of the current month
@@ -59,31 +91,40 @@ function generateCalendarDates(year: number, month: number): CalendarDate[] {
   }
 
   return dates;
-}
+};
 
 export interface DayPickerActivityMobileProps {
   date?: Date;
   onClickMonth?: () => void;
-  onClickPrevious?: () => void;
-  onClickNext?: () => void;
   onClickDate?: (date: Date) => void;
 }
 
 export const DayPickerActivityMobile = ({
   date = new Date(),
   onClickMonth = () => {},
-  onClickPrevious = () => {},
-  onClickNext = () => {},
   onClickDate = (date: Date) => {},
 }: DayPickerActivityMobileProps) => {
-  const monthName = date.toLocaleString("en-US", {
+  const [newDate, setNewDate] = React.useState<Date>(date);
+  const monthName = newDate.toLocaleString("en-US", {
     month: "long",
   });
 
   const calendarDates = generateCalendarDates(
-    date.getFullYear(),
-    date.getMonth() + 1
+    newDate.getFullYear(),
+    newDate.getMonth() + 1
   );
+
+  React.useEffect(() => {
+    setNewDate(date);
+  }, [date]);
+
+  const handleClickNextMonth = () => {
+    setNewDate(addMonthNumber(newDate, 1));
+  };
+
+  const handleClickPreviousMonth = () => {
+    setNewDate(subtractMonthNumber(newDate, 1));
+  };
 
   return (
     <div
@@ -100,7 +141,7 @@ export const DayPickerActivityMobile = ({
           "w-full"
         )}
       >
-        <button onClick={onClickPrevious}>
+        <button onClick={handleClickPreviousMonth}>
           <ChevronLeft
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />
@@ -117,7 +158,7 @@ export const DayPickerActivityMobile = ({
           {monthName}
         </button>
 
-        <button onClick={onClickNext}>
+        <button onClick={handleClickNextMonth}>
           <ChevronRight
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />

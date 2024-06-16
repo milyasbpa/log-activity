@@ -3,18 +3,36 @@ import * as React from "react";
 import clsx from "clsx";
 import { ChevronLeft, ChevronRight } from "emotion-icons/bootstrap";
 
-function monthsAreEqual(date1: Date, date2: Date): boolean {
+const subtractYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year - number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
+  return newDate;
+};
+
+const addYearNumber = (date: Date, number: number): Date => {
+  const year = new Date(date).getFullYear();
+  const newYear = year + number;
+  const month = new Date(date).getMonth() + 1;
+  const day = new Date().getDate();
+  const newDate = new Date(`${newYear}-${month}-${day}`);
+  return newDate;
+};
+
+const monthsAreEqual = (date1: Date, date2: Date): boolean => {
   return (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth()
   );
-}
+};
 
 type MonthInfo = {
   month: Date; // 0 for January, 1 for February, ..., 11 for December
 };
 
-function generateMonthList(year: number): MonthInfo[] {
+const generateMonthList = (year: number): MonthInfo[] => {
   const months: MonthInfo[] = [];
 
   // Loop through each month (0 for January, 1 for February, ..., 11 for December)
@@ -29,28 +47,39 @@ function generateMonthList(year: number): MonthInfo[] {
   }
 
   return months;
-}
+};
 
 export interface MonthPickerActivityMobileProps {
   date?: Date;
   onClickYear?: () => void;
-  onClickPrevious?: () => void;
-  onClickNext?: () => void;
+
   onClickMonth?: (date: Date) => void;
 }
 
 export const MonthPickerActivityMobile = ({
   date = new Date(),
   onClickYear = () => {},
-  onClickPrevious = () => {},
-  onClickNext = () => {},
+
   onClickMonth = (date: Date) => {},
 }: MonthPickerActivityMobileProps) => {
+  const [newDate, setNewDate] = React.useState<Date>(date);
   const yearName = date.toLocaleString("en-US", {
     year: "numeric",
   });
 
   const calendarMonths = generateMonthList(date.getFullYear());
+
+  React.useEffect(() => {
+    setNewDate(date);
+  }, [date]);
+
+  const handleClickNextYear = () => {
+    setNewDate(addYearNumber(newDate, 1));
+  };
+
+  const handleClickPreviousYear = () => {
+    setNewDate(subtractYearNumber(newDate, 1));
+  };
 
   return (
     <div
@@ -67,7 +96,7 @@ export const MonthPickerActivityMobile = ({
           "w-full"
         )}
       >
-        <button onClick={onClickPrevious}>
+        <button onClick={handleClickPreviousYear}>
           <ChevronLeft
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />
@@ -84,7 +113,7 @@ export const MonthPickerActivityMobile = ({
           {yearName}
         </button>
 
-        <button onClick={onClickNext}>
+        <button onClick={handleClickNextYear}>
           <ChevronRight
             className={clsx("w-[0.75rem] h-[0.75rem]", "text-[#5C5F62]")}
           />
