@@ -13,7 +13,7 @@ export const ActivityMobileContainer = (
   props: ActivityMobileContainerProps
 ) => {
   return (
-    <div className={clsx("w-full", "bg-white", "min-h-[100vh]")}>
+    <div className={clsx("sm:hidden", "w-full", "bg-white", "min-h-[100vh]")}>
       <SummaryActivityMobile />
       <TodayActivitiesActivityMobile />
       <MonthActivitiesActivityMobile />

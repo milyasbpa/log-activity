@@ -1,6 +1,6 @@
 export const forms = {
   summary: {
-    status: "status-summary-activity_mobile",
+    data: "data-summary-activity_mobile",
   },
   today_activities: {
     data: "data-today_activities-activity_mobile",

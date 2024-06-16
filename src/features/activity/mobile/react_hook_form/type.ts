@@ -1,7 +1,7 @@
 import { forms } from "./data";
 import { MonthActivities, TodayActivities } from "./default";
 
-export const summary = [forms.summary.status] as const;
+export const summary = [forms.summary.data] as const;
 
 export const today_activities = [forms.today_activities.data] as const;
 
@@ -54,6 +54,7 @@ export type ActivityMobileForm = Record<
   | number
   | boolean
   | { id: string; name: string }[]
+  | { id: string; value: string }[]
   | null
   | { id: string; name: string }
   | TodayActivities[]

@@ -2,21 +2,27 @@
   "summary": {
     "items": [
       {
+        "id": "status",
         "label": "Status"
       },
       {
+        "id": "activity_compliance",
         "label": "Activity Compliance"
       },
       {
+        "id": "load_percentage",
         "label": "Load Percentage"
       },
       {
+        "id": "available_time",
         "label": "Available Time (Hour)"
       },
       {
+        "id": "timespent",
         "label": "Timespent (Hour)"
       },
       {
+        "id": "activity",
         "label": "Activity"
       }
     ]

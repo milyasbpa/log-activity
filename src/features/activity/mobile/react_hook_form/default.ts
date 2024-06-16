@@ -20,9 +20,34 @@ export interface MonthActivities {
 
 export const defaultValues: ActivityMobileForm = {
   // summary
-  [forms.summary.status]: [] as {
+  [forms.summary.data]: [
+    {
+      id: "status",
+      value: "",
+    },
+    {
+      id: "activity_compliance",
+      value: "",
+    },
+    {
+      id: "load_percentage",
+      value: "",
+    },
+    {
+      id: "available_time",
+      value: "",
+    },
+    {
+      id: "timespent",
+      value: "",
+    },
+    {
+      id: "activity",
+      value: "",
+    },
+  ] as {
     id: string;
-    name: string;
+    value: string;
   }[],
 
   // today_activities
