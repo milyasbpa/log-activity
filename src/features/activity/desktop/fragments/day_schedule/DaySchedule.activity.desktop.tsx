@@ -36,7 +36,7 @@ export const setDataSet = (data: DataSet[]) => {
     const startHourNumber = parseInt(data[i].start.split(":")[0] ?? "0");
     const endHourNumber = parseInt(data[i].end.split(":")[0] ?? "0");
     const durationNumber = endHourNumber - startHourNumber;
-    console.log(durationNumber, "ini duration number");
+  
     for (let j = 0; j < durationNumber; j++) {
       result = [
         ...result,
