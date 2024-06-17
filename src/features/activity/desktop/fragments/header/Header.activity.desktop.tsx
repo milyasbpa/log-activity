@@ -13,6 +13,15 @@ export const HeaderActivityDesktop = (props: IHeaderActivityDesktopProps) => {
   const dictionaries = getDictionaries("en");
   const { watch, setValue } = useFormContext<ActivityDesktopForm>();
 
+  const activeTab = watch(forms.header.tab.active) as null | {
+    id: string;
+    name: string;
+  };
+
+  const handleClickTab = (data: { id: string; name: string }) => {
+    setValue(forms.header.tab.active, data);
+  };
+
   const handleClickAddActivity = () => {
     setValue(forms.create.is_open, true);
   };
@@ -42,10 +51,13 @@ export const HeaderActivityDesktop = (props: IHeaderActivityDesktopProps) => {
             className={clsx(
               "grid grid-cols-1 place-content-center place-items-center",
               "rounded-[0.25rem]",
-              "text-[#5C5F62]",
+
               "text-[0.625rem] font-normal",
-              "px-[0.5rem] py-[0.25rem]"
+              "px-[0.5rem] py-[0.25rem]",
+              activeTab?.id === item.id ? "text-[#6F47EB]" : "text-[#5C5F62]",
+              activeTab?.id === item.id ? "bg-[#EEE9FD]" : "bg-[white]"
             )}
+            onClick={() => handleClickTab(item)}
           >
             {item.name}
           </button>

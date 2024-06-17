@@ -23,7 +23,8 @@ export const ActivityDesktopContainer = (
       <div
         className={clsx(
           "grid grid-cols-1 place-content-start place-items-start gap-[1.125rem]",
-          "w-full"
+          "w-full",
+          "px-[1rem] py-[1rem]"
         )}
       >
         <SummaryActivityDesktop />

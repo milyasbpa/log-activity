@@ -25,6 +25,13 @@
     }
   },
   "summary": {
+    "header": {
+      "label": {
+        "day": "Today's Activity",
+        "week": "Week Activity",
+        "month": "Month Activity"
+      }
+    },
     "items": [
       {
         "id": "status",

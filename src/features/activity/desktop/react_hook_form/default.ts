@@ -2,6 +2,15 @@ import { forms } from "./data";
 import { ActivityDesktopForm } from "./type";
 
 export const defaultValues: ActivityDesktopForm = {
+  // header
+  [forms.header.tab.active]: {
+    id: "day",
+    name: "Day",
+  } as {
+    id: string;
+    name: string;
+  } | null,
+
   // summary
   [forms.summary.data]: [
     {

@@ -13,25 +13,44 @@ export const SummaryActivityDesktop = () => {
     id: string;
     value: string;
   }[];
+  const activeTab = watch(forms.header.tab.active) as null | {
+    id: string;
+    name: string;
+  };
+  const title =
+    activeTab?.id === "day"
+      ? dictionaries.summary.header.label.day
+      : activeTab?.id === "week"
+      ? dictionaries.summary.header.label.week
+      : activeTab?.id === "month"
+      ? dictionaries.summary.header.label.month
+      : "";
   return (
     <div
       className={clsx(
-        "grid grid-cols-3 place-content-start place-items-start gap-[1.25rem]",
-        "w-full",
-        "px-[1rem] py-[1rem]"
+        "grid grid-cols-1 place-content-start place-items-start gap-[1.125rem]",
+        "w-full"
       )}
     >
-      {summaryData.map((summaryItem, summaryIndex) => (
-        <SummaryItemActivityDesktop
-          key={summaryIndex}
-          name={
-            dictionaries.summary.items.find(
-              (item) => item.id === summaryItem.id
-            )?.label ?? ""
-          }
-          value={summaryItem.value}
-        />
-      ))}
+      <p className={clsx("text-[1.5rem] text-[#101828] font-bold")}>{title}</p>
+      <div
+        className={clsx(
+          "grid grid-cols-3 place-content-start place-items-start gap-[1.25rem]",
+          "w-full"
+        )}
+      >
+        {summaryData.map((summaryItem, summaryIndex) => (
+          <SummaryItemActivityDesktop
+            key={summaryIndex}
+            name={
+              dictionaries.summary.items.find(
+                (item) => item.id === summaryItem.id
+              )?.label ?? ""
+            }
+            value={summaryItem.value}
+          />
+        ))}
+      </div>
     </div>
   );
 };

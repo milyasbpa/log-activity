@@ -1,4 +1,9 @@
 export const forms = {
+  header: {
+    tab: {
+      active: "active-tab-header-desktop-activity",
+    },
+  },
   summary: {
     data: "data-summary-desktop-activity",
   },

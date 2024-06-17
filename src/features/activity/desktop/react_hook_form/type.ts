@@ -1,5 +1,7 @@
 import { forms } from "./data";
 
+export const header = [forms.header.tab.active] as const;
+
 export const summary = [forms.summary.data] as const;
 
 export const create = [
@@ -36,6 +38,7 @@ export const update = [
 ] as const;
 
 export type ActivityDesktopFormDataKeys =
+  | (typeof header)[number]
   | (typeof summary)[number]
   | (typeof create)[number]
   | (typeof update)[number];
