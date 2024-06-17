@@ -1,0 +1,68 @@
+{
+    "header": {
+        "title": "WAD | Login",
+        "description": "WAD | Login"
+    },
+    "headline": {
+        "headline": "Login",
+        "subline": "Login your account"
+    },
+    "tab": {
+        "list": [
+            {
+                "id": "SSO",
+                "name": "SSO"
+            },
+            {
+                "id": "USER",
+                "name": "User"
+            }
+        ]
+    },
+    "errors": {
+        "invalid_account": {
+            "message": "Login Failed",
+            "description": "Incorrect username or password"
+        },
+        "captcha": {
+            "message": "Login Failed",
+            "description": "Invalid Captcha"
+        },
+        "rate_limiter": {
+            "message": "Login Failed",
+            "description": "Your action has been reach limit. Please try again 5 minutes"
+        }
+    },
+    "form": {
+        "user": {
+            "username": {
+                "label": "Username",
+                "placeholder": "Enter your username"
+            },
+            "password": {
+                "label": "Password",
+                "placeholder": "Enter your password"
+            },
+            "cta": {
+                "primary": {
+                    "label": "Login"
+                }
+            }
+        },
+        "ldap": {
+            "nik": {
+                "label": "NIK",
+                "placeholder": "Enter your NIK"
+            },
+            "password": {
+                "label": "Password",
+                "placeholder": "Enter your Password"
+            },
+            "cta": {
+                "primary": {
+                    "label": "Login"
+                }
+            }
+        }
+    }
+}
