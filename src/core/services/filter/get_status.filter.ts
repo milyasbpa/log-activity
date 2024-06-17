@@ -3,13 +3,14 @@ import { ActivityAPICollectionURL } from "@/core/router/api";
 import { AuthCollectionWebURL } from "@/core/router/web";
 import axios, { AxiosError } from "axios";
 
-export const fetchGetActivity = async (
+export const fetchGetFilterStatus = async (
   payload?: GetActivityPayloadRequestInterface
 ) => {
   try {
-    const url = `${
-      process.env.NEXT_PUBLIC_WL_API_URL
-    }${ActivityAPICollectionURL.getActivity()}`;
+    // const url = `${
+    //   process.env.NEXT_PUBLIC_WL_API_URL
+    // }${ActivityAPICollectionURL.getActivity()}`;
+    const url = "/staging-api/filter/statuses";
 
     const accessToken =
       typeof window !== "undefined" ? localStorage.getItem("access_token") : "";
@@ -17,7 +18,6 @@ export const fetchGetActivity = async (
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
-      params: payload?.params,
     });
     return res.data;
   } catch (err) {

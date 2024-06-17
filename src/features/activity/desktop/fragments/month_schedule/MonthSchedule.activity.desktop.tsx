@@ -2,6 +2,9 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { ChevronRight } from "emotion-icons/heroicons-solid";
+import { forms } from "../../react_hook_form/data";
+import { useFormContext } from "react-hook-form";
+import { ActivityDesktopForm } from "../../react_hook_form/type";
 
 export type DataSet = {
   id: string;
@@ -101,6 +104,7 @@ const generateCalendarDates = (year: number, month: number): CalendarDate[] => {
 export const MonthScheduleActivityDesktop = () => {
   const dictionaries = getDictionaries("en");
   const dayNamesEnglish = getDayNames("en-US");
+  const { watch, setValue } = useFormContext<ActivityDesktopForm>();
   const [newDate, setNewDate] = React.useState<Date>(new Date());
   const calendarDates = generateCalendarDates(
     newDate.getFullYear(),
@@ -131,7 +135,7 @@ export const MonthScheduleActivityDesktop = () => {
   ];
 
   const handleClickItem = (data: DataSet) => {
-    //
+    setValue(forms.update.is_open, true);
   };
 
   return (

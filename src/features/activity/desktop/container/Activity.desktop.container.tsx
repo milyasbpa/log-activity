@@ -11,12 +11,14 @@ import { MonthActivitiesActivityDesktop } from "../fragments/month_activities";
 import { DayScheduleActivityDesktop } from "../fragments/day_schedule";
 import { WeekScheduleActivityDesktop } from "../fragments/week_schedule";
 import { MonthScheduleActivityDesktop } from "../fragments/month_schedule";
+import { useGetFilterStatusActivityDesktop } from "../react_query/hooks";
 
 export interface ActivityDesktopContainerProps {}
 
 export const ActivityDesktopContainer = (
   props: ActivityDesktopContainerProps
 ) => {
+  useGetFilterStatusActivityDesktop();
   const { watch, setValue } = useFormContext<ActivityDesktopForm>();
   const activeTab = watch(forms.header.tab.active) as null | {
     id: string;

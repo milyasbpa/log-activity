@@ -1,5 +1,5 @@
 export const ActivityDesktopReactQueryKey = {
-  GetActivity: () => {
-    return ["ActivityDesktopReactQueryKey.GetActivity"];
+  GetFilterStatus: () => {
+    return ["ActivityDesktopReactQueryKey.GetFilterStatus"];
   },
 };
