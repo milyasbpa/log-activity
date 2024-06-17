@@ -38,7 +38,7 @@ export const SelectActivityDesktop = ({
       )}
     >
       {label.length > 0 && (
-        <p className={clsx("text-[15px] text-[#212121] font-normal")}>
+        <p className={clsx("text-[0.75rem] text-[#212121] font-normal")}>
           {label}
         </p>
       )}
@@ -60,8 +60,8 @@ export const SelectActivityDesktop = ({
             "px-[1rem] py-[0.625rem]",
             "bg-[#F9FAFB]",
             value !== null && value.name !== undefined
-              ? "text-[13px] text-[#000] font-normal"
-              : "text-[12px] text-[#1D2939] font-normal"
+              ? "text-[0.625rem] text-[#000] font-normal"
+              : "text-[0.625rem] text-[#1D2939] font-normal"
           )}
           onClick={handleClickDropdown}
         >

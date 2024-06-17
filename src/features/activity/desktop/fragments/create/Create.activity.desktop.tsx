@@ -140,7 +140,7 @@ export const CreateActivityDesktop = () => {
       <div
         className={clsx(
           "grid grid-flow-row grid-rows-[auto_1fr_auto]",
-          "w-[calc(100vw-2rem)]"
+          "w-[326px]"
         )}
       >
         <div
@@ -165,10 +165,10 @@ export const CreateActivityDesktop = () => {
                 "w-full"
               )}
             >
-              <p className={clsx("text-[#000000] text-[1rem] font-medium")}>
+              <p className={clsx("text-[#000000] text-[0.75rem] font-medium")}>
                 {dictionaries.create_activity.title}
               </p>
-              <p className={clsx("text-[#5C5F62] text-[0.875rem] font-normal")}>
+              <p className={clsx("text-[#5C5F62] text-[0.625rem] font-normal")}>
                 {dictionaries.create_activity.description}
               </p>
             </div>
@@ -275,7 +275,7 @@ export const CreateActivityDesktop = () => {
               "bg-[#5C5F62]",
               "disabled:bg-[#5C5F62]",
               "px-[0.75rem] py-[0.75rem]",
-              "text-[#FFFFFF] text-[15px] font-medium",
+              "text-[#FFFFFF] text-[0.625rem] font-medium",
               "disabled:text-[#FFFFFF]"
             )}
             disabled={isSubmitDisabled}

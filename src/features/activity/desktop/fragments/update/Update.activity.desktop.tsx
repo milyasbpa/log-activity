@@ -140,7 +140,7 @@ export const UpdateActivityDesktop = () => {
       <div
         className={clsx(
           "grid grid-flow-row grid-rows-[auto_1fr_auto]",
-          "w-[calc(100vw-2rem)]"
+          "w-[326px]"
         )}
       >
         <div
@@ -275,7 +275,7 @@ export const UpdateActivityDesktop = () => {
               "bg-[#5C5F62]",
               "disabled:bg-[#5C5F62]",
               "px-[0.75rem] py-[0.75rem]",
-              "text-[#FFFFFF] text-[15px] font-medium",
+              "text-[#FFFFFF] text-[0.625rem] font-medium",
               "disabled:text-[#FFFFFF]"
             )}
             disabled={isSubmitDisabled}

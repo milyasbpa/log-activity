@@ -63,7 +63,6 @@ export const DatePickerActivityDesktop = ({
   };
 
   const handleSelectMonth = (data: Date) => {
-    console.log(data, "ini data");
     const newDate = new Date(
       `${date.getFullYear()}-${data.getMonth() + 1}-${date.getDate()}`
     );
@@ -117,7 +116,7 @@ export const DatePickerActivityDesktop = ({
             "rounded-[0.25rem]",
             "px-[1rem] py-[0.625rem]",
             "bg-[#F9FAFB]",
-            "text-[12px] text-[#1D2939] font-normal"
+            "text-[0.625rem] text-[#1D2939] font-normal"
           )}
           disabled={disabled}
           onClick={handleClickDropdown}

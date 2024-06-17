@@ -19,7 +19,8 @@ export const SummaryItemActivityDesktop = ({
         "w-full",
         "rounded-[0.625rem]",
         "border border-[rgba(0,0,0,0.18)]",
-        "px-[0.5rem] py-[0.5rem]"
+        "px-[0.5rem] py-[0.5rem]",
+        "bg-[white]"
       )}
     >
       <div

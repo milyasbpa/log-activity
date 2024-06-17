@@ -20,7 +20,7 @@ export const InputActivityDesktop = ({
         "w-full"
       )}
     >
-      <p className={clsx("text-[15px] text-[#212121] font-normal")}>
+      <p className={clsx("text-[0.75rem] text-[#212121] font-normal")}>
         {otherProps.label}
       </p>
       <div
@@ -35,8 +35,8 @@ export const InputActivityDesktop = ({
       >
         <input
           className={clsx(
-            "text-[13px] text-[#000] font-normal",
-            "placeholder:text-[12px] placeholder:text-[#1D2939] placeholder:font-normal",
+            "text-[0.625rem] text-[#000] font-normal",
+            "placeholder:text-[0.625rem] placeholder:text-[#1D2939] placeholder:font-normal",
             "outline-none",
             "border-[0px]",
             "w-full"
