@@ -85,7 +85,7 @@ export const DayScheduleActivityDesktop = () => {
     },
   ];
 
-  // const data = setDataSet(dataSet);
+  const dataSet = setDataSet(data);
 
   const handleClickAddActivity = () => {
     setValue(forms.create.is_open, true);
@@ -156,7 +156,7 @@ export const DayScheduleActivityDesktop = () => {
             >
               <div className={clsx("relative", "w-full")}>
                 <div className={clsx("w-full h-[1px]", "bg-[#00000024]")} />
-                {!data.filter((item) => item.start === workingHour.name)
+                {!dataSet.filter((item) => item.start === workingHour.name)
                   .length && (
                   <button
                     className={clsx(
