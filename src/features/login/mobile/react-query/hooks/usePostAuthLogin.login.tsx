@@ -6,22 +6,17 @@ import {
   PostAuthLoginPayloadRequestInterface,
   PostAuthLoginSuccessResponseInterface,
 } from "@/core/models/api/auth";
-import { useLoginStore } from "../../zustand/store";
 import { useFormContext } from "react-hook-form";
-import { UserFormLoginReactHookForm } from "../../react-hook-form/types";
-import {
-  USER_FORM_PASSWORD_LOGIN,
-  USER_FORM_USERNAME_LOGIN,
-  USER_FORM_CAPTCHA_LOGIN,
-} from "../../react-hook-form/keys";
+
 import { getDictionaries } from "../../i18n";
 import { useGetAuthWhoAmILogin } from "./useGetWhoAmI.login";
+import { LoginMobileForm } from "../../react-hook-form/type";
+import { forms } from "../../react-hook-form/data";
 
 export const usePostAuthLoginUserFormLogin = () => {
-  const store = useLoginStore();
   const dict = getDictionaries("en");
   const { mutate: getWhoAmI } = useGetAuthWhoAmILogin();
-  const { watch, setValue } = useFormContext<UserFormLoginReactHookForm>();
+  const { watch, setValue } = useFormContext<LoginMobileForm>();
   return useMutation<
     PostAuthLoginSuccessResponseInterface,
     PostAuthLoginErrorResponseInterface
@@ -29,9 +24,18 @@ export const usePostAuthLoginUserFormLogin = () => {
     mutationKey: LoginReactQueryKey.PostAuthLogin(),
     mutationFn: () => {
       const urlSearchParams = new URLSearchParams();
-      urlSearchParams.append("username", watch(USER_FORM_USERNAME_LOGIN));
-      urlSearchParams.append("password", watch(USER_FORM_PASSWORD_LOGIN));
-      urlSearchParams.append("captcha_token", watch(USER_FORM_CAPTCHA_LOGIN));
+      urlSearchParams.append(
+        "username",
+        watch(forms.form.user.username) as string
+      );
+      urlSearchParams.append(
+        "password",
+        watch(forms.form.user.password) as string
+      );
+      urlSearchParams.append(
+        "captcha_token",
+        watch(forms.form.user.captcha) as string
+      );
 
       const payload: PostAuthLoginPayloadRequestInterface = {
         body: urlSearchParams,
@@ -41,31 +45,31 @@ export const usePostAuthLoginUserFormLogin = () => {
     },
     retry: 0,
     onError(err) {
-      setValue(USER_FORM_CAPTCHA_LOGIN, "");
+      setValue(forms.form.user.captcha, "");
       if (err.status === 404) {
         if (err.name === "captcha_error") {
-          store.setNotification({
-            is_open: true,
-            title: dict.errors.captcha.message,
-            description: dict.errors.captcha.description,
-          });
+          //   store.setNotification({
+          //     is_open: true,
+          //     title: dict.errors.captcha.message,
+          //     description: dict.errors.captcha.description,
+          //   });
         } else {
-          store.setNotification({
-            is_open: true,
-            title: dict.errors.invalid_account.message,
-            description: dict.errors.invalid_account.description,
-          });
+          //   store.setNotification({
+          //     is_open: true,
+          //     title: dict.errors.invalid_account.message,
+          //     description: dict.errors.invalid_account.description,
+          //   });
         }
       } else {
-        store.setNotification({
-          is_open: true,
-          title: dict.errors.rate_limiter.message,
-          description: dict.errors.rate_limiter.description,
-        });
+        // store.setNotification({
+        //   is_open: true,
+        //   title: dict.errors.rate_limiter.message,
+        //   description: dict.errors.rate_limiter.description,
+        // });
       }
     },
     onSuccess(data) {
-      setValue(USER_FORM_CAPTCHA_LOGIN, "");
+      setValue(forms.form.user.captcha, "");
       if (data !== null) {
         getWhoAmI();
       }

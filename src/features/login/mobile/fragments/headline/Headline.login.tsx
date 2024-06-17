@@ -12,15 +12,15 @@ export const HeadlineLogin: React.FC = () => {
         "w-full"
       )}
     >
-      {/* <LogoComponent /> */}
       <div
         className={clsx(
-          "grid grid-cols-1 place-content-start place-items-start gap-y-[0.75rem]",
+          "grid grid-cols-1 place-content-center place-items-center gap-y-[0.75rem]",
           "w-full"
         )}
       >
-        <h3 className={clsx("text-[#424242]")}>{dict.headline}</h3>
-        <p className={clsx("text-lg", "text-[#ADB4BD]")}>{dict.subline}</p>
+        <h3 className={clsx("text-[#000000] text-[1.5rem] font-bold")}>
+          {dict.headline}
+        </h3>
       </div>
     </div>
   );
