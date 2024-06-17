@@ -50,34 +50,90 @@ export const WeekScheduleActivityDesktop = () => {
     (item) => item.getDay() !== 0 && item.getDay() !== 6
   );
 
-  const data = [
+  const hours = [
     {
-      time: "08:00",
-      items: [
-        {
-          activity: "UX testing with Senior developers",
-          range: "08.00-09.00",
-          duration: "(1 hour)",
-          avatar: "",
-          status: "todo",
-        },
-      ],
+      id: 8,
+      name: "08:00",
     },
     {
-      time: "09:00",
-      items: [],
+      id: 9,
+      name: "09:00",
     },
     {
-      time: "10:00",
+      id: 10,
+      name: "10:00",
+    },
+  ];
+
+  const data = datesInWeek.map((dateInWeek, dateInWeekIndex) => {
+    return {
+      date: dateInWeek,
       items: [
         {
-          activity: "UX testing with Senior developers",
-          range: "09.00-10.00",
-          duration: "(1 hour)",
-          avatar: "",
-          status: "in progress",
+          time: "08:00",
+          items: [
+            {
+              activity: "UX testing with Senior developers",
+              range: "08.00-09.00",
+              duration: "(1 hour)",
+              avatar: "",
+              status: "todo",
+            },
+          ],
         },
       ],
+    };
+  });
+
+  // const data = [
+  //   {
+  //     time: "08:00",
+  //     items: [
+  //       {
+  //         activity: "UX testing with Senior developers",
+  //         range: "08.00-09.00",
+  //         duration: "(1 hour)",
+  //         avatar: "",
+  //         status: "todo",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     time: "09:00",
+  //     items: [],
+  //   },
+  //   {
+  //     time: "10:00",
+  //     items: [
+  //       {
+  //         activity: "UX testing with Senior developers",
+  //         range: "09.00-10.00",
+  //         duration: "(1 hour)",
+  //         avatar: "",
+  //         status: "in progress",
+  //       },
+  //     ],
+  //   },
+  // ];
+
+  const dataSet = [
+    {
+      date: new Date(),
+      hours: "08:00",
+      activity: "UX testing with Senior developers",
+      range: "08.00-09.00",
+      duration: "(1 hour)",
+      avatar: "",
+      status: "todo",
+    },
+    {
+      date: new Date("2024-06-21"),
+      hours: "08:00",
+      activity: "UX testing with Senior developers",
+      range: "08.00-09.00",
+      duration: "(1 hour)",
+      avatar: "",
+      status: "todo",
     },
   ];
 
@@ -183,16 +239,16 @@ export const WeekScheduleActivityDesktop = () => {
           "w-full"
         )}
       >
-        {data.map((dataItem, dataIndex) => (
+        {hours.map((hour, hourIndex) => (
           <div
-            key={dataIndex}
+            key={hourIndex}
             className={clsx(
               "grid grid-cols-[auto_1fr] place-content-start place-items-start gap-[1.5rem]",
               "w-full"
             )}
           >
             <p className={clsx("text-[#5C5F62] text-[0.875rem] font-medium")}>
-              {dataItem.time}
+              {hour.name}
             </p>
 
             <div
@@ -206,45 +262,111 @@ export const WeekScheduleActivityDesktop = () => {
                 <div className={clsx("w-full h-[1px]", "bg-[#00000024]")} />
               </div>
 
-              {dataItem.items.map((item, itemIndex) => (
-                <div
-                  key={itemIndex}
-                  className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
-                    "w-full",
-                    "rounded-[0.5rem]",
-                    setStatusBackgroundColor({ status: item.status }),
-                    "px-[0.75rem] py-[0.75rem]"
-                  )}
-                >
-                  <p
-                    className={clsx(
-                      "text-[#000000] text-[0.875rem] font-medium"
-                    )}
-                  >
-                    {item.activity}
-                  </p>
+              <div
+                className={clsx(
+                  "grid grid-cols-5 place-content-start place-items-start",
+                  "w-full"
+                )}
+              >
+                {datesInWeek.map((dateInWeek, dateInWeekIndex) => {
+                  return dataSet.map((item, itemIndex) => {
+                    if (
+                      item.date.getDate() === dateInWeek.getDate() &&
+                      item.date.getMonth() === dateInWeek.getMonth() &&
+                      item.date.getFullYear() === dateInWeek.getFullYear() &&
+                      item.hours === hour.name
+                    ) {
+                      return (
+                        <div
+                          key={itemIndex}
+                          className={clsx(
+                            "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
+                            "w-full",
+                            "rounded-[0.5rem]",
+                            setStatusBackgroundColor({ status: item.status }),
+                            "px-[0.75rem] py-[0.75rem]"
+                          )}
+                        >
+                          <p
+                            className={clsx(
+                              "text-[#000000] text-[0.875rem] font-medium"
+                            )}
+                          >
+                            {item.activity}
+                          </p>
 
-                  <div
-                    className={clsx(
-                      "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                      "w-full"
-                    )}
-                  >
-                    <p
-                      className={clsx("text-[#5C5F62] text-[13px] font-medium")}
+                          <div
+                            className={clsx(
+                              "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+                              "w-full"
+                            )}
+                          >
+                            <p
+                              className={clsx(
+                                "text-[#5C5F62] text-[13px] font-medium"
+                              )}
+                            >
+                              {item.range}
+                            </p>
+                            <p
+                              className={clsx(
+                                "text-[#000000] text-[13px] font-medium"
+                              )}
+                            >
+                              {item.duration}
+                            </p>
+                          </div>
+                        </div>
+                      );
+                    }
+                    return <span key={itemIndex} />;
+                  });
+                })}
+                {/* {dataSet
+                  .filter((item) => item.hours === hour.name)
+                  .map((item, itemIndex) => (
+                    <div
+                      key={itemIndex}
+                      className={clsx(
+                        "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
+                        "w-full",
+                        "rounded-[0.5rem]",
+                        setStatusBackgroundColor({ status: item.status }),
+                        "px-[0.75rem] py-[0.75rem]"
+                      )}
                     >
-                      {item.range}
-                    </p>
-                    <p
-                      className={clsx("text-[#000000] text-[13px] font-medium")}
-                    >
-                      {item.duration}
-                    </p>
-                    {/* avatar */}
-                  </div>
-                </div>
-              ))}
+                      <p
+                        className={clsx(
+                          "text-[#000000] text-[0.875rem] font-medium"
+                        )}
+                      >
+                        {item.activity}
+                      </p>
+
+                      <div
+                        className={clsx(
+                          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+                          "w-full"
+                        )}
+                      >
+                        <p
+                          className={clsx(
+                            "text-[#5C5F62] text-[13px] font-medium"
+                          )}
+                        >
+                          {item.range}
+                        </p>
+                        <p
+                          className={clsx(
+                            "text-[#000000] text-[13px] font-medium"
+                          )}
+                        >
+                          {item.duration}
+                        </p>
+                      </div>
+                    </div>
+                  ))} */}
+              </div>
             </div>
           </div>
         ))}

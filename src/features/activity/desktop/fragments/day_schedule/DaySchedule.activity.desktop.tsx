@@ -16,38 +16,73 @@ const setStatusBackgroundColor = (data: { status: string }) => {
   }
 };
 
+export type DataSet = {
+  id: string;
+  project: string;
+  activity: string;
+  priority: string;
+  date: Date;
+  start: string;
+  end: string;
+  status: string;
+};
+
+export const setDataSet = (data: DataSet[]) => {
+  let result: DataSet[] = [];
+  for (let i = 0; i < data.length; i++) {
+    const startHourNumber = parseInt(data[i].start.split(":")[0] ?? "0");
+    const endHourNumber = parseInt(data[i].end.split(":")[0] ?? "0");
+    const durationNumber = endHourNumber - startHourNumber;
+    console.log(durationNumber, "ini duration number");
+    for (let j = 0; j < durationNumber; j++) {
+      result = [
+        ...result,
+        {
+          ...data[i],
+          start: `${
+            startHourNumber + j < 10
+              ? `0${startHourNumber + j}:00`
+              : `${startHourNumber + j}:00`
+          }`,
+          end: `${
+            startHourNumber + j + 1 < 10
+              ? `0${startHourNumber + j + 1}:00`
+              : `${startHourNumber + j + 1}:00`
+          }`,
+        },
+      ];
+    }
+  }
+  return result;
+};
+
 export const DayScheduleActivityDesktop = () => {
   const dictionaries = getDictionaries("en");
-  const data = [
+
+  const workingHours = Array.from({ length: 10 }, (_, i) => i + 8).map(
+    (item) => {
+      return {
+        id: String(item),
+        name: `${item < 10 ? `0${item}` : item}:00`,
+      };
+    }
+  );
+
+  const dataSet: DataSet[] = [
     {
-      time: "08:00",
-      items: [
-        {
-          activity: "UX testing with Senior developers",
-          range: "08.00-09.00",
-          duration: "(1 hour)",
-          avatar: "",
-          status: "todo",
-        },
-      ],
-    },
-    {
-      time: "09:00",
-      items: [],
-    },
-    {
-      time: "10:00",
-      items: [
-        {
-          activity: "UX testing with Senior developers",
-          range: "09.00-10.00",
-          duration: "(1 hour)",
-          avatar: "",
-          status: "in progress",
-        },
-      ],
+      id: "koksoakda",
+      project: "OSS",
+      activity: "UX testing with Senior developers",
+      priority: "high",
+      date: new Date(),
+      start: "08:00",
+      end: "10:00",
+      status: "todo",
     },
   ];
+
+  const data = setDataSet(dataSet);
+
   return (
     <div
       className={clsx(
@@ -92,16 +127,16 @@ export const DayScheduleActivityDesktop = () => {
           "w-full"
         )}
       >
-        {data.map((dataItem, dataIndex) => (
+        {workingHours.map((workingHour, workingHourIndex) => (
           <div
-            key={dataIndex}
+            key={workingHourIndex}
             className={clsx(
               "grid grid-cols-[auto_1fr] place-content-start place-items-start gap-[1.5rem]",
               "w-full"
             )}
           >
             <p className={clsx("text-[#5C5F62] text-[0.875rem] font-medium")}>
-              {dataItem.time}
+              {workingHour.name}
             </p>
 
             <div
@@ -113,7 +148,8 @@ export const DayScheduleActivityDesktop = () => {
             >
               <div className={clsx("relative", "w-full")}>
                 <div className={clsx("w-full h-[1px]", "bg-[#00000024]")} />
-                {!dataItem.items.length && (
+                {!data.filter((item) => item.start === workingHour.name)
+                  .length && (
                   <button
                     className={clsx(
                       "absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]",
@@ -140,45 +176,62 @@ export const DayScheduleActivityDesktop = () => {
                 )}
               </div>
 
-              {dataItem.items.map((item, itemIndex) => (
-                <div
-                  key={itemIndex}
-                  className={clsx(
-                    "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
-                    "w-full",
-                    "rounded-[0.5rem]",
-                    setStatusBackgroundColor({ status: item.status }),
-                    "px-[0.75rem] py-[0.75rem]"
-                  )}
-                >
-                  <p
-                    className={clsx(
-                      "text-[#000000] text-[0.875rem] font-medium"
-                    )}
-                  >
-                    {item.activity}
-                  </p>
+              {data
+                .filter((item) => item.start === workingHour.name)
+                .map((item, itemIndex) => {
+                  const rangeText = `${item.start}-${item.end}`;
+                  const durationNumber =
+                    parseInt(item.end.split(":")[0] ?? "0") -
+                    parseInt(item.start.split(":")[0] ?? "0");
+                  const durationText =
+                    durationNumber > 1
+                      ? `(${durationNumber} hours)`
+                      : `(${durationNumber} hour)`;
+                  return (
+                    <div
+                      key={itemIndex}
+                      className={clsx(
+                        "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
+                        "w-full",
+                        "rounded-[0.5rem]",
+                        setStatusBackgroundColor({ status: item.status }),
+                        "px-[0.75rem] py-[0.75rem]"
+                      )}
+                    >
+                      <p
+                        className={clsx(
+                          "text-[#000000] text-[0.875rem] font-medium"
+                        )}
+                      >
+                        {item.activity}
+                      </p>
 
-                  <div
-                    className={clsx(
-                      "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
-                      "w-full"
-                    )}
-                  >
-                    <p
-                      className={clsx("text-[#5C5F62] text-[13px] font-medium")}
-                    >
-                      {item.range}
-                    </p>
-                    <p
-                      className={clsx("text-[#000000] text-[13px] font-medium")}
-                    >
-                      {item.duration}
-                    </p>
-                    {/* avatar */}
-                  </div>
-                </div>
-              ))}
+                      <div
+                        className={clsx(
+                          "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.5rem]",
+                          "w-full"
+                        )}
+                      >
+                        <p
+                          className={clsx(
+                            "text-[#5C5F62] text-[13px] font-medium"
+                          )}
+                        >
+                          {rangeText}
+                        </p>
+                        <p
+                          className={clsx(
+                            "text-[#000000] text-[13px] font-medium"
+                          )}
+                        >
+                          {/* {'1 hour'} */}
+                          {durationText}
+                        </p>
+                        {/* avatar */}
+                      </div>
+                    </div>
+                  );
+                })}
             </div>
           </div>
         ))}
