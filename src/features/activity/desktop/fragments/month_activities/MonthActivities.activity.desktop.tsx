@@ -40,8 +40,7 @@ export const MonthActivitiesActivityDesktop = () => {
     <div
       className={clsx(
         "grid grid-cols-1 place-content-start place-items-start gap-[0.75rem]",
-        "w-full",
-        "px-[1rem] py-[1rem]"
+        "w-full"
       )}
     >
       <div
