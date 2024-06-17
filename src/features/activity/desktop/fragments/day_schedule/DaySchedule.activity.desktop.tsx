@@ -2,6 +2,9 @@ import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
 import { Plus } from "emotion-icons/heroicons-solid";
+import { useFormContext } from "react-hook-form";
+import { ActivityDesktopForm } from "../../react_hook_form/type";
+import { forms } from "../../react_hook_form/data";
 
 const setStatusBackgroundColor = (data: { status: string }) => {
   switch (data.status.toLowerCase()) {
@@ -58,6 +61,7 @@ export const setDataSet = (data: DataSet[]) => {
 
 export const DayScheduleActivityDesktop = () => {
   const dictionaries = getDictionaries("en");
+  const { watch, setValue } = useFormContext<ActivityDesktopForm>();
 
   const workingHours = Array.from({ length: 10 }, (_, i) => i + 8).map(
     (item) => {
@@ -68,7 +72,7 @@ export const DayScheduleActivityDesktop = () => {
     }
   );
 
-  const dataSet: DataSet[] = [
+  const data: DataSet[] = [
     {
       id: "koksoakda",
       project: "OSS",
@@ -81,7 +85,11 @@ export const DayScheduleActivityDesktop = () => {
     },
   ];
 
-  const data = setDataSet(dataSet);
+  // const data = setDataSet(dataSet);
+
+  const handleClickAddActivity = () => {
+    setValue(forms.create.is_open, true);
+  };
 
   return (
     <div
@@ -164,6 +172,7 @@ export const DayScheduleActivityDesktop = () => {
                     style={{
                       boxShadow: "0px 2px 4px 0px #0000001A",
                     }}
+                    onClick={handleClickAddActivity}
                   >
                     <Plus
                       className={clsx(
