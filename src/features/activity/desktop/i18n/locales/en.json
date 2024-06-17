@@ -59,6 +59,56 @@
       }
     ]
   },
+  "month_activity": {
+    "title": "This Month Activities",
+    "description": "Sorted by last updated",
+    "cta": {
+      "add_activity": {
+        "children": "Add Activity"
+      }
+    },
+    "search": {
+      "startIcon": "/icons/activity/mobile/fragments/month_activities/search.svg",
+      "label": "",
+      "placeholder": "Search activity..."
+    },
+    "empty": {
+      "message": "No activity this month",
+      "description": "Create new activity now",
+      "src": "/illustrations/activity/mobile/fragments/month_activities/empty.svg"
+    },
+    "not_found": {
+      "message": "No activity found",
+      "description": "Try to find another activity",
+      "src": "/illustrations/activity/mobile/fragments/month_activities/empty.svg"
+    },
+    "items": {
+      "icon": "/icons/activity/mobile/fragments/month_activities/activity.svg",
+      "mocked_data": [
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Todo",
+          "project": "OSS",
+          "time": "6 hours"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "In Progress",
+          "project": "OSS",
+          "time": "6 hours"
+        },
+        {
+          "id": "koaskdoaks",
+          "name": "Meeting with andria about New UX concept",
+          "status": "Completed",
+          "project": "OSS",
+          "time": "6 hours"
+        }
+      ]
+    }
+  },
   "create_activity": {
     "title": "Create Activity",
     "description": "You can create event, meeting and tasks",

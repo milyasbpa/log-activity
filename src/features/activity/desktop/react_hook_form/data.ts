@@ -7,6 +7,10 @@ export const forms = {
   summary: {
     data: "data-summary-desktop-activity",
   },
+  month_activities: {
+    search: "search-month_activities-desktop-activity",
+    data: "data-month_activities-desktop-activity",
+  },
   create: {
     is_open: "is_open-create-desktop-activity",
     form: {

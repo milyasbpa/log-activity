@@ -40,12 +40,18 @@ export const DrawerNavigationDesktop = ({
             "w-full",
             "pr-[1.5rem] py-[1rem]",
             active ? "pl-[1.25rem]" : "hover:pl-[1.25rem] pl-[1.5rem]",
+            // active
+            //   ? "border-l-[4px] border-l-[#875BF7]"
+            //   : "hover:border-l-[4px] hover:border-l-[#875BF7]",
             active
-              ? "border-l-[4px] border-l-[#875BF7]"
-              : "hover:border-l-[4px] hover:border-l-[#875BF7]",
+              ? "border-l-[4px] border-l-[#5C5F62]"
+              : "hover:border-l-[4px] hover:border-l-[#5C5F62]",
+            // active
+            //   ? "text-[#875BF7] bg-[#F5F3FF]"
+            //   : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
             active
-              ? "text-[#875BF7] bg-[#F5F3FF]"
-              : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
+              ? "text-[#5C5F62] bg-[#F9F9F9]"
+              : "hover:text-[#5C5F62] hover:bg-[#F9F9F9] text-[#344054]",
             "cursor-pointer",
             "text-[1rem] font-semibold"
           )}
@@ -77,12 +83,18 @@ export const DrawerNavigationDesktop = ({
             "w-full",
             "pr-[1.5rem] py-[1rem]",
             active ? "pl-[1.25rem]" : "hover:pl-[1.25rem] pl-[1.5rem]",
+            // active
+            //   ? "border-l-[4px] border-l-[#875BF7]"
+            //   : "hover:border-l-[4px] hover:border-l-[#875BF7]",
             active
-              ? "border-l-[4px] border-l-[#875BF7]"
-              : "hover:border-l-[4px] hover:border-l-[#875BF7]",
+              ? "border-l-[4px] border-l-[#5C5F62]"
+              : "hover:border-l-[4px] hover:border-l-[#5C5F62]",
+            // active
+            //   ? "text-[#875BF7] bg-[#F5F3FF]"
+            //   : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
             active
-              ? "text-[#875BF7] bg-[#F5F3FF]"
-              : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
+              ? "text-[#5C5F62] bg-[#F9F9F9]"
+              : "hover:text-[#5C5F62] hover:bg-[#F9F9F9] text-[#344054]",
             "cursor-pointer",
             "text-[0.875rem] font-bold"
           )}
@@ -103,9 +115,12 @@ export const DrawerNavigationDesktop = ({
               "grid grid-flow-col items-center content-center justify-between justify-items-start gap-[0.5rem]",
               "w-full",
               "px-[1.5rem] py-[1rem]",
+              // children.active
+              //   ? "text-[#875BF7] bg-[#F5F3FF]"
+              //   : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
               children.active
-                ? "text-[#875BF7] bg-[#F5F3FF]"
-                : "hover:text-[#875BF7] hover:bg-[#F5F3FF] text-[#344054]",
+                ? "text-[#5C5F62] bg-[#F9F9F9]"
+                : "hover:text-[#5C5F62] hover:bg-[#F9F9F9] text-[#344054]",
               "cursor-pointer",
               "text-[1rem] font-semibold",
               "border-box"

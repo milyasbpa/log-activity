@@ -4,6 +4,11 @@ export const header = [forms.header.tab.active] as const;
 
 export const summary = [forms.summary.data] as const;
 
+export const month_activities = [
+  forms.month_activities.search,
+  forms.month_activities.data,
+] as const;
+
 export const create = [
   forms.create.is_open,
   forms.create.form.project.value,
@@ -40,6 +45,7 @@ export const update = [
 export type ActivityDesktopFormDataKeys =
   | (typeof header)[number]
   | (typeof summary)[number]
+  | (typeof month_activities)[number]
   | (typeof create)[number]
   | (typeof update)[number];
 

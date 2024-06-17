@@ -23,8 +23,13 @@ export const SummaryItemActivityMobile = ({
       <p className={clsx("text-[#5C5F62] text-[0.625rem] font-medium")}>
         {name}
       </p>
-      <p className={clsx("text-[#050708] text-[0.875rem] font-medium")}>
-        {value}
+      <p
+        className={clsx(
+          "text-[#050708] text-[0.875rem] font-medium",
+          !value.length ? "opacity-0" : "opacity-100"
+        )}
+      >
+        {!value.length ? "placeholder" : value}
       </p>
     </div>
   );

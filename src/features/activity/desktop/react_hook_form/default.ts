@@ -1,6 +1,14 @@
 import { forms } from "./data";
 import { ActivityDesktopForm } from "./type";
 
+export interface MonthActivities {
+  id: string;
+  name: string;
+  status: string;
+  project: string;
+  time: string;
+}
+
 export const defaultValues: ActivityDesktopForm = {
   // header
   [forms.header.tab.active]: {
@@ -41,6 +49,10 @@ export const defaultValues: ActivityDesktopForm = {
     id: string;
     value: string;
   }[],
+
+  // month_activities
+  [forms.month_activities.search]: "" as string,
+  [forms.month_activities.data]: [] as MonthActivities[],
 
   // create
   [forms.create.is_open]: false as boolean,

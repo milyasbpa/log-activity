@@ -15,12 +15,13 @@ export const SummaryItemActivityDesktop = ({
   return (
     <div
       className={clsx(
-        "grid grid-flow-col place-content-start place-items-start gap-[0.875rem]",
+        "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.875rem]",
         "w-full",
         "rounded-[0.625rem]",
         "border border-[rgba(0,0,0,0.18)]",
         "px-[0.5rem] py-[0.5rem]",
-        "bg-[white]"
+        "bg-[white]",
+        "border-box"
       )}
     >
       <div
@@ -37,11 +38,14 @@ export const SummaryItemActivityDesktop = ({
           "w-full"
         )}
       >
-        <p className={clsx("text-[#5C5F62] text-[13px] font-medium")}>
-          {name}
-        </p>
-        <p className={clsx("text-[#050708] text-[17px] font-medium")}>
-          {value}
+        <p className={clsx("text-[#5C5F62] text-[13px] font-medium")}>{name}</p>
+        <p
+          className={clsx(
+            "text-[#050708] text-[17px] font-medium",
+            !value.length ? "opacity-0" : "opacity-100"
+          )}
+        >
+          {!value.length ? "placeholder" : value}
         </p>
       </div>
     </div>
