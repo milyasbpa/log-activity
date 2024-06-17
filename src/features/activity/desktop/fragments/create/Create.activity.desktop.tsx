@@ -7,6 +7,7 @@ import { SelectActivityDesktop } from "../../components/select";
 import { useFormContext } from "react-hook-form";
 import { ActivityDesktopForm } from "../../react_hook_form/type";
 import { forms } from "../../react_hook_form/data";
+import { DatePickerActivityDesktop } from "../../components/datepicker";
 
 export const CreateActivityDesktop = () => {
   const {
@@ -36,6 +37,8 @@ export const CreateActivityDesktop = () => {
     id: string;
     name: string;
   }[];
+
+  const dateValue = watch(forms.create.form.date.value) as Date;
 
   const startValue = watch(forms.create.form.start.value) as null | {
     id: string;
@@ -91,6 +94,10 @@ export const CreateActivityDesktop = () => {
 
   const handleSelectPriority = (data: { id: string; name: string }) => {
     setValue(forms.create.form.priority.value, data);
+  };
+
+  const handleSelectDate = (data: Date) => {
+    setValue(forms.create.form.date.value, data);
   };
 
   const handleSelectStart = (data: { id: string; name: string }) => {
@@ -216,6 +223,11 @@ export const CreateActivityDesktop = () => {
               }
               options={priorityOptions}
               onSelect={handleSelectPriority}
+            />
+            <DatePickerActivityDesktop
+              label={dictionaries.create_activity.form.date.label}
+              value={dateValue}
+              onSelect={handleSelectDate}
             />
             <div
               className={clsx(

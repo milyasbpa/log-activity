@@ -9,6 +9,7 @@ export const create = [
   forms.create.form.activity.value,
   forms.create.form.priority.value,
   forms.create.form.priority.options,
+  forms.create.form.date.value,
   forms.create.form.start.value,
   forms.create.form.start.options,
   forms.create.form.end.value,
@@ -25,6 +26,7 @@ export const update = [
   forms.update.form.activity.value,
   forms.update.form.priority.value,
   forms.update.form.priority.options,
+  forms.update.form.date.value,
   forms.update.form.start.value,
   forms.update.form.start.options,
   forms.update.form.end.value,
@@ -47,4 +49,5 @@ export type ActivityDesktopForm = Record<
   | { id: string; value: string }[]
   | null
   | { id: string; name: string }
+  | Date
 >;
