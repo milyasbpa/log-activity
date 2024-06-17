@@ -236,5 +236,11 @@
         "children": "Update Activity"
       }
     }
+  },
+  "schedule": {
+    "day": {
+      "title": "Schedules for {{date}}",
+      "description": "Create and complete tasks using boards"
+    }
   }
 }
