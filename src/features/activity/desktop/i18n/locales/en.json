@@ -240,7 +240,12 @@
   "schedule": {
     "day": {
       "title": "Schedules for {{date}}",
-      "description": "Create and complete tasks using boards"
+      "description": "Create and complete tasks using boards",
+      "cta": {
+        "add_activity": {
+          "children": "Add Activity"
+        }
+      }
     }
   }
 }

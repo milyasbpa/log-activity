@@ -12,8 +12,8 @@ export interface MonthActivities {
 export const defaultValues: ActivityDesktopForm = {
   // header
   [forms.header.tab.active]: {
-    id: "day",
-    name: "Day",
+    id: "week",
+    name: "Week",
   } as {
     id: string;
     name: string;

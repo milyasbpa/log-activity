@@ -1,6 +1,7 @@
 import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+import { Plus } from "emotion-icons/heroicons-solid";
 
 const setStatusBackgroundColor = (data: { status: string }) => {
   switch (data.status.toLowerCase()) {
@@ -15,11 +16,7 @@ const setStatusBackgroundColor = (data: { status: string }) => {
   }
 };
 
-export interface IDayScheduleActivityDesktopProps {}
-
-export const DayScheduleActivityDesktop = (
-  props: IDayScheduleActivityDesktopProps
-) => {
+export const DayScheduleActivityDesktop = () => {
   const dictionaries = getDictionaries("en");
   const data = [
     {
@@ -36,6 +33,10 @@ export const DayScheduleActivityDesktop = (
     },
     {
       time: "09:00",
+      items: [],
+    },
+    {
+      time: "10:00",
       items: [
         {
           activity: "UX testing with Senior developers",
@@ -110,7 +111,35 @@ export const DayScheduleActivityDesktop = (
                 "pt-[0.625rem]"
               )}
             >
-              <div className={clsx("w-full h-[1px]", "bg-[#00000024]")} />
+              <div className={clsx("relative", "w-full")}>
+                <div className={clsx("w-full h-[1px]", "bg-[#00000024]")} />
+                {!dataItem.items.length && (
+                  <button
+                    className={clsx(
+                      "absolute top-[50%] translate-y-[-50%] left-[50%] translate-x-[-50%]",
+                      "z-10",
+                      "grid grid-flow-col items-center content-center justify-start justify-items-start gap-[0.375rem]",
+                      "bg-white",
+                      "rounded-[0.375rem]",
+                      "border border-[#00000024]",
+                      "text-[#5C5F62] text-[0.875rem] font-medium",
+                      "px-[0.625rem] py-[0.25rem]"
+                    )}
+                    style={{
+                      boxShadow: "0px 2px 4px 0px #0000001A",
+                    }}
+                  >
+                    <Plus
+                      className={clsx(
+                        "w-[0.75rem] h-[0.75rem]",
+                        "text-[#5C5F62]"
+                      )}
+                    />
+                    {dictionaries.schedule.day.cta.add_activity.children}
+                  </button>
+                )}
+              </div>
+
               {dataItem.items.map((item, itemIndex) => (
                 <div
                   key={itemIndex}

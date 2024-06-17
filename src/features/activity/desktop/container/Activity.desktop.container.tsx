@@ -8,7 +8,8 @@ import { useFormContext } from "react-hook-form";
 import { ActivityDesktopForm } from "../react_hook_form/type";
 import { forms } from "../react_hook_form/data";
 import { MonthActivitiesActivityDesktop } from "../fragments/month_activities";
-import { DayScheduleActivityDesktop } from "../fragments/day_schedule/DaySchedule.desktop";
+import { DayScheduleActivityDesktop } from "../fragments/day_schedule";
+import { WeekScheduleActivityDesktop } from "../fragments/week_schedule";
 
 export interface ActivityDesktopContainerProps {}
 
@@ -47,6 +48,8 @@ export const ActivityDesktopContainer = (
         >
           {/* calendar */}
           {activeTab?.id === "day" && <DayScheduleActivityDesktop />}
+          {activeTab?.id === "week" && <WeekScheduleActivityDesktop />}
+          {activeTab?.id === "month" && <WeekScheduleActivityDesktop />}
           {/* month activities */}
           <MonthActivitiesActivityDesktop />
         </div>
