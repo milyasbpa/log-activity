@@ -1,4 +1,7 @@
 export const forms = {
+  tab: {
+    active: "active-tab-mobile-login",
+  },
   form: {
     sso: {
       nik: "nik-sso-form-mobile-login",

@@ -1,31 +1,31 @@
-import { useRef } from "react";
+import * as React from "react";
 import clsx from "clsx";
 import { getDictionaries } from "../../i18n";
+// import { usePostAuthLoginLDAPFormLogin } from "../../react-query/hooks/usePostAuthLDAPLogin.login";
 import { useFormContext } from "react-hook-form";
 
-import { usePostAuthLoginUserFormLogin } from "../../react-query/hooks/usePostAuthLogin.login";
 import ReCAPTCHA from "react-google-recaptcha";
 import { RECAPTCHA } from "@/core/constants";
-import { InputLoginMobile } from "../../components/input";
 import { PasswordInputLoginMobile } from "../../components/password_input";
-import { LoginMobileForm } from "../../react-hook-form/type";
+import { InputLoginMobile } from "../../components/input";
 import { forms } from "../../react-hook-form/data";
+import { LoginMobileForm } from "../../react-hook-form/type";
+import { usePostAuthLoginLDAPFormLogin } from "../../react-query/hooks/usePostAuthLDAPLogin.login";
 
-export const UserFormLogin = () => {
-  const captchaRef = useRef<ReCAPTCHA | null>(null);
-
+export const LDAPFormLogin: React.FC = () => {
+  const captchaRef = React.useRef<ReCAPTCHA | null>(null);
   const { watch, setValue } = useFormContext<LoginMobileForm>();
 
   const { mutate: postAuthLogin, isPending: isLoadingPostAuthLogin } =
-    usePostAuthLoginUserFormLogin();
+    usePostAuthLoginLDAPFormLogin();
 
-  const dict = getDictionaries("en").form.user;
+  const dict = getDictionaries("en").form.ldap;
 
-  const handleChangeUserName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(forms.form.user.username, e.currentTarget.value);
+  const handleChangeNIK = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(forms.form.sso.nik, e.currentTarget.value);
   };
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(forms.form.user.password, e.currentTarget.value);
+    setValue(forms.form.sso.password, e.currentTarget.value);
   };
   const handleClickLogin = () => {
     captchaRef.current?.reset();
@@ -36,23 +36,22 @@ export const UserFormLogin = () => {
     if (!token) {
       return;
     }
-
-    setValue(forms.form.user.captcha, token);
+    setValue(forms.form.sso.captcha, token);
   };
 
   const handleChangeExpired = () => {
-    setValue(forms.form.user.captcha, "");
+    setValue(forms.form.sso.captcha, "");
   };
-
   return (
     <div
       className={clsx(
-        "grid grid-cols-1 place-content-start place-items-start gap-[1.5rem]",
+        "grid grid-cols-1 place-content-start place-items-start gap-y-[2rem]",
         "w-full"
       )}
     >
       <InputLoginMobile
-        placeholder={dict.username.placeholder}
+        placeholder={dict.nik.placeholder}
+        value={watch(forms.form.sso.nik) as string}
         startIcon={
           <svg
             width="24"
@@ -73,11 +72,11 @@ export const UserFormLogin = () => {
             />
           </svg>
         }
-        onChange={handleChangeUserName}
+        onChange={handleChangeNIK}
       />
-
       <PasswordInputLoginMobile
         placeholder={dict.password.placeholder}
+        value={watch(forms.form.sso.password) as string}
         startIcon={
           <svg
             width="24"
@@ -115,7 +114,7 @@ export const UserFormLogin = () => {
         )}
         disabled={
           isLoadingPostAuthLogin ||
-          !(watch(forms.form.user.captcha) as string).length
+          !(watch(forms.form.sso.captcha) as string).length
         }
         onClick={handleClickLogin}
       >

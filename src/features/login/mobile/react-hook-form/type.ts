@@ -1,6 +1,9 @@
 import { forms } from "./data";
 
+export const tab = [forms.tab.active] as const;
+
 export const form = [
+  // sso
   forms.form.sso.nik,
   forms.form.sso.password,
   forms.form.sso.captcha,
@@ -10,7 +13,9 @@ export const form = [
   forms.form.user.captcha,
 ] as const;
 
-export type LoginMobileFormDataKeys = (typeof form)[number];
+export type LoginMobileFormDataKeys =
+  | (typeof tab)[number]
+  | (typeof form)[number];
 
 export type LoginMobileForm = Record<
   LoginMobileFormDataKeys,
